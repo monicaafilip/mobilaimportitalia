@@ -1,0 +1,30 @@
+.logoImg {
+	display: block;
+	margin: auto;
+	width: 100%;
+	height: auto;
+}
+
+.fa-user, 
+.fa-heart, 
+.fa-shopping-cart, 
+.fa-search {
+	color: #ffffff;
+	padding: 0px 0.5rem;
+}
+
+.navbarIcons {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.nav-link
+{
+	text-decoration: none !important;
+	color: whitesmoke !important;
+}
+
+.nav-link:hover {
+	background-color: transparent;
+	color:red !important;
+}

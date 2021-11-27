@@ -1,0 +1,24 @@
+.carousel-caption {
+    top: 40%;
+    transform: translateY(-60%);
+    bottom: initial;
+    -webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+
+.productsBtn {
+	margin: auto;
+}
+
+
+@media (max-width: 576px)
+{
+    .h1VWSize {
+        font-size: 5vw;
+    }
+
+    .normalVWSize {
+        font-size: 2.5vw;
+    }
+}
