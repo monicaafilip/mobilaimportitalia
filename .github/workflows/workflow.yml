@@ -1,0 +1,35 @@
+name: Github Page Deploy
+
+on: 
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with: 
+          node-version: 14.x
+
+      - name: Clean the cache
+        run: npm cache clean --force
+        
+      - name: Install NPM packages
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+  
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: build
