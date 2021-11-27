@@ -1,20 +1,28 @@
 {
   "files": {
-    "main.css": "/mobilaimportitalia/static/css/main.d535ad75.chunk.css",
-    "main.js": "/mobilaimportitalia/static/js/main.70208be0.chunk.js",
-    "main.js.map": "/mobilaimportitalia/static/js/main.70208be0.chunk.js.map",
+    "main.css": "/mobilaimportitalia/static/css/main.dfbe9fb2.chunk.css",
+    "main.js": "/mobilaimportitalia/static/js/main.6276c89d.chunk.js",
+    "main.js.map": "/mobilaimportitalia/static/js/main.6276c89d.chunk.js.map",
     "runtime-main.js": "/mobilaimportitalia/static/js/runtime-main.7cf1ac42.js",
     "runtime-main.js.map": "/mobilaimportitalia/static/js/runtime-main.7cf1ac42.js.map",
-    "static/js/2.a246d9c0.chunk.js": "/mobilaimportitalia/static/js/2.a246d9c0.chunk.js",
-    "static/js/2.a246d9c0.chunk.js.map": "/mobilaimportitalia/static/js/2.a246d9c0.chunk.js.map",
+    "static/css/2.383c0125.chunk.css": "/mobilaimportitalia/static/css/2.383c0125.chunk.css",
+    "static/js/2.0ca25666.chunk.js": "/mobilaimportitalia/static/js/2.0ca25666.chunk.js",
+    "static/js/2.0ca25666.chunk.js.map": "/mobilaimportitalia/static/js/2.0ca25666.chunk.js.map",
     "index.html": "/mobilaimportitalia/index.html",
-    "static/css/main.d535ad75.chunk.css.map": "/mobilaimportitalia/static/css/main.d535ad75.chunk.css.map",
-    "static/js/2.a246d9c0.chunk.js.LICENSE.txt": "/mobilaimportitalia/static/js/2.a246d9c0.chunk.js.LICENSE.txt"
+    "static/css/2.383c0125.chunk.css.map": "/mobilaimportitalia/static/css/2.383c0125.chunk.css.map",
+    "static/css/main.dfbe9fb2.chunk.css.map": "/mobilaimportitalia/static/css/main.dfbe9fb2.chunk.css.map",
+    "static/js/2.0ca25666.chunk.js.LICENSE.txt": "/mobilaimportitalia/static/js/2.0ca25666.chunk.js.LICENSE.txt",
+    "static/media/initial-logo.5f0d19c0.png": "/mobilaimportitalia/static/media/initial-logo.5f0d19c0.png",
+    "static/media/loc (1).dd77aca8.jpeg": "/mobilaimportitalia/static/media/loc (1).dd77aca8.jpeg",
+    "static/media/loc (2).6e44ec98.jpeg": "/mobilaimportitalia/static/media/loc (2).6e44ec98.jpeg",
+    "static/media/prod (1).1064899f.jpeg": "/mobilaimportitalia/static/media/prod (1).1064899f.jpeg",
+    "static/media/prod (2).f0e26026.jpeg": "/mobilaimportitalia/static/media/prod (2).f0e26026.jpeg"
   },
   "entrypoints": [
     "static/js/runtime-main.7cf1ac42.js",
-    "static/js/2.a246d9c0.chunk.js",
-    "static/css/main.d535ad75.chunk.css",
-    "static/js/main.70208be0.chunk.js"
+    "static/css/2.383c0125.chunk.css",
+    "static/js/2.0ca25666.chunk.js",
+    "static/css/main.dfbe9fb2.chunk.css",
+    "static/js/main.6276c89d.chunk.js"
   ]
 }
