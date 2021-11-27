@@ -39,7 +39,6 @@ const Directory = ({ products }) => {
           });
           setProds(matches);
       }
-	  console.log(prods);
 	}
   return (
     <div className="App">
