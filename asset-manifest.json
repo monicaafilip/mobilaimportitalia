@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/mobilaimportitalia/static/css/main.6ebdc8af.chunk.css",
-    "main.js": "/mobilaimportitalia/static/js/main.2c93546d.chunk.js",
-    "main.js.map": "/mobilaimportitalia/static/js/main.2c93546d.chunk.js.map",
+    "main.css": "/mobilaimportitalia/static/css/main.327123ee.chunk.css",
+    "main.js": "/mobilaimportitalia/static/js/main.dfb67aa9.chunk.js",
+    "main.js.map": "/mobilaimportitalia/static/js/main.dfb67aa9.chunk.js.map",
     "runtime-main.js": "/mobilaimportitalia/static/js/runtime-main.7cf1ac42.js",
     "runtime-main.js.map": "/mobilaimportitalia/static/js/runtime-main.7cf1ac42.js.map",
     "static/css/2.383c0125.chunk.css": "/mobilaimportitalia/static/css/2.383c0125.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.cc2ff48c.chunk.js.map": "/mobilaimportitalia/static/js/2.cc2ff48c.chunk.js.map",
     "index.html": "/mobilaimportitalia/index.html",
     "static/css/2.383c0125.chunk.css.map": "/mobilaimportitalia/static/css/2.383c0125.chunk.css.map",
-    "static/css/main.6ebdc8af.chunk.css.map": "/mobilaimportitalia/static/css/main.6ebdc8af.chunk.css.map",
+    "static/css/main.327123ee.chunk.css.map": "/mobilaimportitalia/static/css/main.327123ee.chunk.css.map",
     "static/js/2.cc2ff48c.chunk.js.LICENSE.txt": "/mobilaimportitalia/static/js/2.cc2ff48c.chunk.js.LICENSE.txt",
     "static/media/initial-logo.5f0d19c0.png": "/mobilaimportitalia/static/media/initial-logo.5f0d19c0.png",
     "static/media/loc (1).dd77aca8.jpeg": "/mobilaimportitalia/static/media/loc (1).dd77aca8.jpeg",
@@ -22,7 +22,7 @@
     "static/js/runtime-main.7cf1ac42.js",
     "static/css/2.383c0125.chunk.css",
     "static/js/2.cc2ff48c.chunk.js",
-    "static/css/main.6ebdc8af.chunk.css",
-    "static/js/main.2c93546d.chunk.js"
+    "static/css/main.327123ee.chunk.css",
+    "static/js/main.dfb67aa9.chunk.js"
   ]
 }
