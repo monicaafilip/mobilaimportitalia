@@ -7,7 +7,7 @@ const TitleTextContainer = ({title, text}) =>
 {
 	return (
 		<div className="container leftAlignment">
-			<h1 className="display-5">{title}</h1>
+			<h1 className="display-5 title">{title}</h1>
 			<p className="lead">{text}</p>
 			<Divider/>
 		</div>
