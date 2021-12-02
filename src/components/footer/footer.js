@@ -9,15 +9,11 @@ const Footer = () => {
           <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
             <img src="img/logo.png" alt="" width="180" className="mb-3" />
             <p className="font-italic text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt.
+              Modern Design <br/> Mobilă nouă și second-hand import Italia.
             </p>
             <ul className="list-inline mt-4">
               <li className="list-inline-item">
                 <i className="fa fa-facebook"></i>
-              </li>
-              <li className="list-inline-item">
-                <i className="fa fa-instagram"></i>
               </li>
               <li className="list-inline-item">
                 <i className="fa fa-pinterest"></i>
@@ -32,7 +28,7 @@ const Footer = () => {
               România
             </p>
             <p>
-              <i className="fa fa-envelope mr-3"></i> moderndisign849@gmail.com
+              <i className="fa fa-envelope mr-3"></i> moderndesign.importitalia@gmail.com
             </p>
             <p>
               <i className="fa fa-phone mr-3"></i> +40746 086 433

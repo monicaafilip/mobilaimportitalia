@@ -2,68 +2,148 @@
     {
         "id":1,
         "title":"Bucatarie",
-        "imageUrl":"https://cdn.imageupload.workers.dev/FCu0m9jW_bucatarie%20(4).jpeg"
+        "imageUrl":"https://bit.ly/3pEeOq7"
     },
     {
         "id":2,
         "title":"Bucatarie",
-        "imageUrl":"https://cdn.imageupload.workers.dev/2fnwdG8M_bucatarie%20(1).jpeg"
+        "imageUrl":"https://bit.ly/3G5g388"
     },
     {
         "id":3,
         "title":"Bucatarie",
-        "imageUrl":"https://cdn.imageupload.workers.dev/lWfgc9ZE_bucatarie%20(2).jpeg"
+        "imageUrl":"https://bit.ly/3EhEnTR"
     },
     {
         "id":4,
         "title":"Bucatarie",
-        "imageUrl":"https://cdn.imageupload.workers.dev/3WMujAt5_bucatarie%20(3).jpeg"
+        "imageUrl":"https://bit.ly/32O58RT"
     },
 
    
     {
         "id":5,
         "title":"Canapea",
-        "imageUrl":"https://cdn.imageupload.workers.dev/beFQJI6X_canapea%20(10).jpeg"
+        "imageUrl":"https://bit.ly/3ruQkCb"
     },
     {
         "id":6,
         "title":"Canapea",
-        "imageUrl":"https://cdn.imageupload.workers.dev/oleAncjr_canapea%20(1).jpeg"
+        "imageUrl":"https://bit.ly/2ZQDpiu"
     },
     {
         "id":7,
         "title":"Canapea",
-        "imageUrl":"https://cdn.imageupload.workers.dev/CpJEOxCW_canapea%20(2).jpeg"
+        "imageUrl":"https://bit.ly/3djPIXr"
     },
     {
         "id":8,
         "title":"Canapea",
-        "imageUrl":"https://cdn.imageupload.workers.dev/Ux1j93sc_canapea%20(3).jpeg"
+        "imageUrl":"https://bit.ly/3G8d0Mn"
     },
     {
         "id":9,
         "title":"Canapea",
-        "imageUrl":"https://cdn.imageupload.workers.dev/ClwgkDFw_canapea%20(4).jpeg"
+        "imageUrl":"https://bit.ly/3GbOQR4"
     },
     {
         "id":10,
         "title":"Canapea",
-        "imageUrl":"https://cdn.imageupload.workers.dev/eqwONzEc_canapea%20(5).jpeg"
+        "imageUrl":"https://bit.ly/3pmFFqn"
     },
     {
         "id":11,
         "title":"Canapea",
-        "imageUrl":"https://cdn.imageupload.workers.dev/lOj8noTI_canapea%20(6).jpeg"
+        "imageUrl":"https://bit.ly/3Dm3e7E"
     },
     {
         "id":12,
         "title":"Canapea",
-        "imageUrl":"https://cdn.imageupload.workers.dev/GXLnGrOC_canapea%20(7).jpeg"
+        "imageUrl":"https://bit.ly/31fix5i"
     },
     {
         "id":13,
         "title":"Canapea",
-        "imageUrl":"https://cdn.imageupload.workers.dev/FUMoGJDY_canapea%20(8).jpeg"
+        "imageUrl":"https://bit.ly/3xNpshM"
+    },
+    {
+        "id":14,
+        "title":"Canapea",
+        "imageUrl":"https://bit.ly/3pnI6J7"
+    },
+    {
+        "id":15,
+        "title":"Canapea",
+        "imageUrl":"https://bit.ly/3lPx12T"
+    },
+    {
+        "id":16,
+        "title":"Canapea",
+        "imageUrl":"https://bit.ly/3pnzlis"
+    },
+    {
+        "id":17,
+        "title":"Canapea",
+        "imageUrl":"https://bit.ly/32O6SdT"
+    },
+    {
+        "id":18,
+        "title":"Canapea",
+        "imageUrl":"https://bit.ly/31eLkqB"
+    },
+    {
+        "id":19,
+        "title":"Dulap",
+        "imageUrl":"https://bit.ly/3Iqy4zZ"
+    },
+    {
+        "id":20,
+        "title":"Dulap",
+        "imageUrl":"https://bit.ly/3xLOu0P"
+    },
+    {
+        "id":21,
+        "title":"Dulap",
+        "imageUrl":"https://bit.ly/2ZQFBGK"
+    },
+    {
+        "id":22,
+        "title":"Dulap",
+        "imageUrl":"https://bit.ly/3G6ttRk"
+    },
+    {
+        "id":23,
+        "title":"Dulap",
+        "imageUrl":"https://bit.ly/3lua9FN"
+    },
+    {
+        "id":24,
+        "title":"Dulap",
+        "imageUrl":"https://bit.ly/3IeGaLN"
+    },
+    {
+        "id":25,
+        "title":"Dulap",
+        "imageUrl":"https://bit.ly/3xPEt2M"
+    },
+    {
+        "id":26,
+        "title":"Fotoliu",
+        "imageUrl":"https://bit.ly/3offken"
+    },
+    {
+        "id":27,
+        "title":"Fotoliu",
+        "imageUrl":"https://bit.ly/31fkH4U"
+    },
+    {
+        "id":28,
+        "title":"Masa",
+        "imageUrl":"https://bit.ly/32O8g05"
+    },
+    {
+        "id":29,
+        "title":"Pat",
+        "imageUrl":"https://bit.ly/3ddnldO"
     }
 ]
