@@ -15,12 +15,12 @@ const MediaObjectRight = () =>
                 <div className="blurb-info">
                     <h5>Adresă</h5>
                     <p>
-                        Dănila, nr 0000
+                        Dănila, str. Europeana
                         jud. Suceava, Romania
                     </p>
                     <h5>Contact</h5>
                     <p>
-                        +400000000000
+                        +40746 086 433
                     </p>
                 </div>
             </div>

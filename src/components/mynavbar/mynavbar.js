@@ -9,7 +9,7 @@ const MyNavbar = () => {
   return (
     <Navbar bg="dark" expand="lg">
       <Container fluid>
-        <Navbar.Brand className="nav-link" href="/mobilaimportitalia">
+        <Navbar.Brand className="nav-link" href="/">
           <img className="img fluid logoImg" src={logo} alt="logo"></img>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />

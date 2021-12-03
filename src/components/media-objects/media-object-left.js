@@ -21,7 +21,7 @@ const MediaObjectLeft = () =>
                     </p>
                     <h5>Contact</h5>
                     <p>
-                        +400000000000
+                        +40746 086 433
                     </p>
                 </div>
             </div>
