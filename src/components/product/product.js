@@ -1,7 +1,6 @@
 import React from "react";
 
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 
 import "./product.css";
 
@@ -14,17 +13,11 @@ function MyVerticallyCenteredModal(props) {
       centered
     >
       <Modal.Header closeButton>
-        {/* <Modal.Title id="contained-modal-title-vcenter">
-          Descriere
-        </Modal.Title> */}
       </Modal.Header>
       <Modal.Body>
       <img src={props.url} alt='work' className='image'/>
      
       </Modal.Body>
-      {/* <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer> */}
     </Modal>
   );
 }
