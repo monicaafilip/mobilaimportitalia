@@ -13,7 +13,9 @@ const Footer = () => {
             </p>
             <ul className="list-inline mt-4">
               <li className="list-inline-item">
-                <i className="fa fa-facebook"></i>
+                <a href='https://www.facebook.com/moderndesign.mobilaimportitalia'>
+                  <i className="fa fa-facebook"></i>
+                </a>
               </li>
               <li className="list-inline-item">
                 <a href='https://pin.it/6PmlJa4'>
