@@ -26,7 +26,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "copy":"cp ./public/CNAME ./build/CNAME",
     "predeploy": "npm run build && npm run copy",
     "deploy": "gh-pages -d build"
   },
