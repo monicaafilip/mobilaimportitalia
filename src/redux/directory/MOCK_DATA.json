@@ -37,11 +37,6 @@
         "imageUrl":"https://i.postimg.cc/1RVjQkF8/canapea-12-transf.png"
     },
     {
-        "id":8,
-        "title":"Canapea",
-        "imageUrl":"https://i.postimg.cc/Dwnj1mMG/canapea-13-tranf.png"
-    },
-    {
         "id":9,
         "title":"Canapea",
         "imageUrl":"https://i.postimg.cc/02gH2VGc/canapea-14-transf.png"
@@ -148,7 +143,32 @@
     },
     {
         "id":30,
-        "title":"Frigider",
+        "title":"Dulap",
         "imageUrl":"https://i.postimg.cc/WpKcmmGk/frigider-1-transf.png"
+    },
+    {
+        "id":31,
+        "title":"Dulap",
+        "imageUrl":"https://i.postimg.cc/TwDCrkdK/IMG-20210727-095433.jpg"
+    },
+    {
+        "id":32,
+        "title":"Dulap",
+        "imageUrl":"https://i.postimg.cc/D0Q6N8bF/IMG-20210727-095451.jpg"
+    },
+    {
+        "id":33,
+        "title":"Dulap",
+        "imageUrl":"https://i.postimg.cc/KvNQr32D/IMG-20210728-092847.jpg"
+    },
+    {
+        "id":34,
+        "title":"Dulap",
+        "imageUrl":"https://i.postimg.cc/c1fFC5kj/IMG-20210728-092908.jpg"
+    },
+    {
+        "id":35,
+        "title":"Dulap",
+        "imageUrl":"https://i.postimg.cc/XvhsBMbM/IMG-20210728-092923.jpg"
     }
 ]
