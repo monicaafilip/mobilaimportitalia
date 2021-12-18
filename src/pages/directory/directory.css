@@ -1,3 +1,9 @@
 .search {
-    padding: 10px 20%;
+  padding: 10px 20%;
+}
+
+.pagination-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
