@@ -10,7 +10,7 @@ function MyVerticallyCenteredModal(props) {
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
-      centered
+    centered
     >
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
