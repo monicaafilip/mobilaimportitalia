@@ -1,13 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
-
-import { createStructuredSelector } from "reselect";
 
 import MyNavbar from "../../components/mynavbar/mynavbar";
 import Footer from "../../components/footer/footer";
 import Divider from "../../components/divider/divider";
-
-import { selectText } from "../../redux/aboutus/aboutus.selectors";
 
 import "./aboutus.css";
 import "../../App.css";
@@ -69,8 +64,4 @@ const AboutUs = () => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  text: selectText,
-});
-
-export default connect(mapStateToProps)(AboutUs);
+export default AboutUs;
