@@ -19,7 +19,6 @@ import {
 
 class Directory extends React.Component {
   componentDidMount() {
-    console.log("didMount");
     this.props.dispatch(loadData({ countPerPage: 10 }));
   }
 
@@ -43,7 +42,6 @@ class Directory extends React.Component {
 
   render() {
     let products = this.props.state.prods.filteredProducts;
-
     return (
       <div className="App">
         <div className="container-fluid mainHomePage">
@@ -138,7 +136,7 @@ class Directory extends React.Component {
             columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
           >
             <Masonry>
-              {products.map(({ id, ...otherProps }) => (
+              {products?.map(({ id, ...otherProps }) => (
                 <Product key={id} {...otherProps} />
               ))}
             </Masonry>
@@ -163,11 +161,19 @@ class Directory extends React.Component {
             </Button>
           </div>
           <ul className="pagination-list">
-            <ButtonToolbar aria-label="Toolbar with button groups">
-              <ButtonGroup className="me-2" aria-label="First group">
+            <ButtonToolbar
+              key="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <ButtonGroup
+                key="group"
+                className="me-2"
+                aria-label="First group"
+              >
                 {[...Array(this.props.state.prods.filteredPages)].map(
                   (value, index) => (
                     <Button
+                      key={index}
                       aria-label="Page 1"
                       onClick={() => this.goToPage(index + 1)}
                       aria-current="page"
