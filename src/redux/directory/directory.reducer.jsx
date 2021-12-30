@@ -93,7 +93,10 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 
       let perPage = loadNewPageState.countPerPage;
 
-      if (action.payload.filteredProducts.length < perPage)
+      if (
+        action.payload.filteredProducts &&
+        action.payload.filteredProducts.length < perPage
+      )
         perPage = action.payload.filteredProducts.length;
 
       let nextProducts;

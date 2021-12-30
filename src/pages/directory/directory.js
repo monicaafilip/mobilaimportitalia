@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 
 import "./directory.css";
 import "../../App.css";
@@ -18,16 +19,12 @@ import {
 
 class Directory extends React.Component {
   componentDidMount() {
-    const params = new URLSearchParams(window.location.search);
-    const pageQueryParam = params.get("page");
-    if (!pageQueryParam) {
-      window.history.pushState({ page: 1 }, "title 1", "?page=1");
-    } else {
-    }
-
     this.props.dispatch(loadData({ countPerPage: 10 }));
   }
 
+  renderAll() {
+    this.props.dispatch(loadData({ countPerPage: 10 }));
+  }
   filter(cat) {
     this.props.dispatch(filterByCategory({ category: cat }));
   }
@@ -49,60 +46,92 @@ class Directory extends React.Component {
       <div className="App">
         <div className="container-fluid mainHomePage">
           <MyNavbar />
-          <button
-            onClick={() => {
-              this.previousPage();
-            }}
-          >
-            Previous
-          </button>
-          <button
-            onClick={() => {
-              this.nextPage();
-            }}
-          >
-            Next page
-          </button>
-
-          <ul className="pagination-list">
-            {[...Array(this.props.state.prods.filteredPages)].map(
-              (value, index) => (
-                <button
-                  key={index}
-                  className={`button pagination-link ${
-                    this.props.state.currentPage === index + 1
-                      ? "is-current"
-                      : ""
-                  }`}
-                  aria-label="Page 1"
-                  onClick={() => this.goToPage(index + 1)}
-                  aria-current="page"
-                >
-                  {index + 1}
-                </button>
-              )
-            )}
-          </ul>
-          {/* <input
-            onChange={(e) => {
-              this.filter(e);
-            }}
-            style={{ width: "100%" }}
-            placeholder="Filter by"
-            type="text"
-          /> */}
-          <button onClick={() => this.filter("bucatarie")}>Bucătărie</button>
-          <button onClick={() => this.filter("baie")}>Baie</button>
-          <button onClick={() => this.filter("canapea")}>Canapele</button>
-          <button onClick={() => this.filter("dulap")}>Dulapuri</button>
-          <button onClick={() => this.filter("pat")}>Paturi</button>
-          <button onClick={() => this.filter("masa")}>Mese</button>
-          <button onClick={() => this.filter("scaun")}>Scaune</button>
-          <button onClick={() => this.filter("frigider")}>Frigidere</button>
-          <button onClick={() => this.filter("saltea")}>Saltele</button>
-          <button onClick={() => this.filter("fotoliu")}>Fotolii</button>
-          <button onClick={() => this.filter("vandut")}>Vândute</button>
-
+          <div className="categorii">
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.renderAll()}
+            >
+              Toate
+            </Button>{" "}
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.filter("bucatarie")}
+            >
+              Bucătărie
+            </Button>{" "}
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.filter("baie")}
+            >
+              Baie
+            </Button>{" "}
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.filter("canapea")}
+            >
+              Canapele
+            </Button>{" "}
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.filter("dulap")}
+            >
+              Dulapuri
+            </Button>{" "}
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.filter("pat")}
+            >
+              Paturi
+            </Button>{" "}
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.filter("masa")}
+            >
+              Mese
+            </Button>{" "}
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.filter("scaun")}
+            >
+              Scaune
+            </Button>{" "}
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.filter("frigider")}
+            >
+              Frigidere
+            </Button>{" "}
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.filter("saltea")}
+            >
+              Saltele
+            </Button>{" "}
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.filter("fotoliu")}
+            >
+              Fotolii
+            </Button>{" "}
+            <Button
+              className="categorie"
+              variant="outline-dark"
+              onClick={() => this.filter("vandut")}
+            >
+              Vândute
+            </Button>{" "}
+          </div>
           <ResponsiveMasonry
             columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
           >
@@ -112,6 +141,42 @@ class Directory extends React.Component {
               ))}
             </Masonry>
           </ResponsiveMasonry>
+          <div className="previous-next-buttons">
+            <Button
+              variant="outline-dark"
+              onClick={() => {
+                this.previousPage();
+              }}
+            >
+              Previous page
+            </Button>
+            {"  "}
+            <Button
+              variant="outline-dark"
+              onClick={() => {
+                this.nextPage();
+              }}
+            >
+              Next page
+            </Button>
+          </div>
+          <ul className="pagination-list">
+            <ButtonToolbar aria-label="Toolbar with button groups">
+              <ButtonGroup className="me-2" aria-label="First group">
+                {[...Array(this.props.state.prods.filteredPages)].map(
+                  (value, index) => (
+                    <Button
+                      aria-label="Page 1"
+                      onClick={() => this.goToPage(index + 1)}
+                      aria-current="page"
+                    >
+                      {index + 1}
+                    </Button>
+                  )
+                )}
+              </ButtonGroup>
+            </ButtonToolbar>
+          </ul>
           <Footer />
         </div>
       </div>
