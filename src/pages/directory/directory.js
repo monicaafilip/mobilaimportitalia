@@ -19,6 +19,7 @@ import {
 
 class Directory extends React.Component {
   componentDidMount() {
+    console.log("didMount");
     this.props.dispatch(loadData({ countPerPage: 10 }));
   }
 
@@ -42,6 +43,7 @@ class Directory extends React.Component {
 
   render() {
     let products = this.props.state.prods.filteredProducts;
+
     return (
       <div className="App">
         <div className="container-fluid mainHomePage">
