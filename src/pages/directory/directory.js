@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from "react-ga";
 import { connect } from "react-redux";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
@@ -18,6 +19,16 @@ import {
 } from "../../redux/directory/directory.actions";
 
 class Directory extends React.Component {
+  constructor(props) {
+    super(props);
+    const pathname = props.match.path;
+
+    let pageView;
+    if (pathname === "*") pageView = "/not-found";
+    else pageView = pathname;
+
+    ReactGA.pageview(pageView);
+  }
   componentDidMount() {
     this.props.dispatch(loadData({ countPerPage: 10 }));
   }

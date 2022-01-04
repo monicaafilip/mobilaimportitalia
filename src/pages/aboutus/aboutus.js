@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from "react-ga";
 
 import MyNavbar from "../../components/mynavbar/mynavbar";
 import Footer from "../../components/footer/footer";
@@ -7,7 +8,15 @@ import Divider from "../../components/divider/divider";
 import "./aboutus.css";
 import "../../App.css";
 
-const AboutUs = () => {
+const AboutUs = (props) => {
+  const pathname = props.match.path;
+
+  let pageView;
+  if (pathname === "*") pageView = "/not-found";
+  else pageView = pathname;
+
+  ReactGA.pageview(pageView);
+
   return (
     <div className="App">
       <div className="container-fluid mainHomePage">
