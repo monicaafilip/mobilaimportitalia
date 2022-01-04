@@ -59,84 +59,84 @@ class Directory extends React.Component {
           <MyNavbar />
           <div className="categorii">
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.renderAll()}
             >
               Toate
             </Button>{" "}
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.filter("bucatarie")}
             >
               Bucătărie
             </Button>{" "}
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.filter("baie")}
             >
               Baie
             </Button>{" "}
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.filter("canapea")}
             >
               Canapele
             </Button>{" "}
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.filter("dulap")}
             >
               Dulapuri
             </Button>{" "}
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.filter("pat")}
             >
               Paturi
             </Button>{" "}
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.filter("masa")}
             >
               Mese
             </Button>{" "}
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.filter("scaun")}
             >
               Scaune
             </Button>{" "}
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.filter("frigider")}
             >
               Frigidere
             </Button>{" "}
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.filter("saltea")}
             >
               Saltele
             </Button>{" "}
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.filter("fotoliu")}
             >
               Fotolii
             </Button>{" "}
             <Button
-              className="categorie"
+              className="categorie mt-1 mb-1"
               variant="outline-dark"
               onClick={() => this.filter("vandut")}
             >

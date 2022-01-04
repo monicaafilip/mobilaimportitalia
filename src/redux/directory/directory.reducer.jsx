@@ -145,6 +145,8 @@ function addFilterIfNotExists(filter, appliedFilters) {
 }
 
 function removeFilter(filter, appliedFilters) {
+  console.log(filter);
+  console.log(appliedFilters);
   let index = appliedFilters.indexOf(filter);
   appliedFilters.splice(index, 1);
   return appliedFilters;

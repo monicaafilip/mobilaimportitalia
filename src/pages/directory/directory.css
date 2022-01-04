@@ -6,8 +6,13 @@
   padding: 10px 10%;
 }
 .previous-next-buttons {
-  padding: 10px 0% 10px 80%;
+  padding: 10px 0% 10px 0%;
+  margin: 5px;
 }
 .pagination-list {
-  padding: 10px 0 10px 80%;
+  padding: 10px 0 10px 0%;
+}
+
+.categorie {
+  border-color: none !important;
 }
