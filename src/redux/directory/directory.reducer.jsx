@@ -138,16 +138,18 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 export default directoryReducer;
 
 function addFilterIfNotExists(filter, appliedFilters) {
-  let index = appliedFilters.indexOf(filter);
-  if (index === -1) appliedFilters.push(filter);
+  if (appliedFilters) {
+    let index = appliedFilters.indexOf(filter);
+    if (index === -1) appliedFilters.push(filter);
+  }
 
   return appliedFilters;
 }
 
 function removeFilter(filter, appliedFilters) {
-  console.log(filter);
-  console.log(appliedFilters);
-  let index = appliedFilters.indexOf(filter);
-  appliedFilters.splice(index, 1);
+  if (appliedFilters) {
+    let index = appliedFilters.indexOf(filter);
+    appliedFilters.splice(index, 1);
+  }
   return appliedFilters;
 }
