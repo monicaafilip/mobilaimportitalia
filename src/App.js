@@ -1,6 +1,6 @@
 import React from "react";
 import ReactGA from "react-ga";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from "./pages/home/home";
 import AboutUs from "./pages/aboutus/aboutus";
