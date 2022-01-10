@@ -18,6 +18,8 @@ import {
   filterByCategory,
 } from "../../redux/directory/directory.actions";
 
+let perPage = 10;
+
 class Directory extends React.Component {
   constructor(props) {
     super(props);
@@ -30,11 +32,11 @@ class Directory extends React.Component {
     ReactGA.pageview(pageView);
   }
   componentDidMount() {
-    this.props.dispatch(loadData({ countPerPage: 10 }));
+    this.props.dispatch(loadData({ countPerPage: perPage }));
   }
 
   renderAll() {
-    this.props.dispatch(loadData({ countPerPage: 10 }));
+    this.props.dispatch(loadData({ countPerPage: perPage }));
   }
   filter(cat) {
     this.props.dispatch(filterByCategory({ category: cat }));
@@ -135,13 +137,6 @@ class Directory extends React.Component {
             >
               Fotolii
             </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("vandut")}
-            >
-              Vândute
-            </Button>{" "}
           </div>
           <ResponsiveMasonry
             columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
@@ -152,25 +147,20 @@ class Directory extends React.Component {
               ))}
             </Masonry>
           </ResponsiveMasonry>
-          <div className="previous-next-buttons">
-            <Button
-              variant="outline-dark"
-              onClick={() => {
-                this.previousPage();
-              }}
-            >
-              Previous page
-            </Button>
-            {"  "}
-            <Button
-              variant="outline-dark"
-              onClick={() => {
-                this.nextPage();
-              }}
-            >
-              Next page
-            </Button>
-          </div>
+          {products.length > 9 ? (
+            <div className="previous-next-buttons">
+              <Button
+                variant="outline-dark"
+                onClick={() => this.previousPage()}
+              >
+                Previous page
+              </Button>
+              {"  "}
+              <Button variant="outline-dark" onClick={() => this.nextPage()}>
+                Next page
+              </Button>
+            </div>
+          ) : null}
           <ul className="pagination-list">
             <ButtonToolbar
               key="toolbar"

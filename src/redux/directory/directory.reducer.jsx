@@ -10,7 +10,7 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       let newState = Object.assign({}, state);
       let category = action.payload.category;
       let filteredValues = state.products.filter((product) => {
-        return product.title.toLowerCase().includes(category);
+        return product.filter.toLowerCase().includes(category);
       });
 
       let appliedFilters = state.appliedFilters;
