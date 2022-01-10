@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Bucatarie",
+    "title": "Bucătărie din lemn masiv",
     "filter": "Bucatarie",
     "imageUrl": "https://i.postimg.cc/FF3PYjHp/bucatarie-1.jpg",
     "price": "1700",
@@ -12,7 +12,7 @@
   },
   {
     "id": 2,
-    "title": "Bucatarie",
+    "title": "Bucătărie din MDF",
     "filter": "Bucatarie",
     "imageUrl": "https://i.postimg.cc/KjPQCyHw/bucatarie-2.jpg",
     "price": "550",
@@ -23,7 +23,7 @@
   },
   {
     "id": 3,
-    "title": "Bucatarie",
+    "title": "Bucătărie din pal",
     "filter": "Bucatarie",
     "imageUrl": "https://i.postimg.cc/SN4gCJXh/bucatarie-3.jpg",
     "price": "450",
@@ -34,8 +34,8 @@
   },
   {
     "id": 5,
-    "title": "Canapea",
-    "filter": "canapea",
+    "title": "Canapea din imitație de piele",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/VN7Vf14C/canapea-10-transf.png",
     "price": "200",
     "sales": "200",
@@ -45,8 +45,8 @@
   },
   {
     "id": 7,
-    "title": "Canapea",
-    "filter": "canapea",
+    "title": "Canapea din țesătură",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/1RVjQkF8/canapea-12-transf.png",
     "price": "200",
     "sales": "200",
@@ -56,8 +56,8 @@
   },
   {
     "id": 9,
-    "title": "Canapea",
-    "filter": "canapea",
+    "title": "Canapea din imitație de piele",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/02gH2VGc/canapea-14-transf.png",
     "price": "200",
     "sales": "200",
@@ -67,8 +67,8 @@
   },
   {
     "id": 12,
-    "title": "Canapea",
-    "filter": "canapea",
+    "title": "Canapea din țesătură",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/j2nQrYkt/canapea-3-transf2.png",
     "price": "800",
     "sales": "800",
@@ -78,8 +78,8 @@
   },
   {
     "id": 15,
-    "title": "Canapea",
-    "filter": "canapea",
+    "title": "Canapea cu peninsulă",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/50RqG2gs/canapea-6-transf.png",
     "price": "1100",
     "sales": "1100",
@@ -89,8 +89,8 @@
   },
   {
     "id": 16,
-    "title": "Canapea",
-    "filter": "canapea",
+    "title": "Canapea din țesătură",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/9Xsswm2P/canapea-7-transf.png",
     "price": "900",
     "sales": "900",
@@ -100,7 +100,7 @@
   },
   {
     "id": 19,
-    "title": "Dulap",
+    "title": "Dulap din lemn masiv",
     "filter": "dulap",
     "imageUrl": "https://i.postimg.cc/pL5TYX52/dulap-1.jpg",
     "price": "500",
@@ -111,7 +111,7 @@
   },
   {
     "id": 20,
-    "title": "Dulap",
+    "title": "Dulap din pal",
     "filter": "dulap",
     "imageUrl": "https://i.postimg.cc/XJkXGHGd/dulap-10.jpg",
     "price": "200",
@@ -287,8 +287,8 @@
   },
   {
     "id": 36,
-    "title": "canapea",
-    "filter": "canapea",
+    "title": "Canapea",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/cC0W0PtK/canapea.jpg",
     "price": "",
     "sales": "",
@@ -298,8 +298,8 @@
   },
   {
     "id": 37,
-    "title": "canapea",
-    "filter": "canapea",
+    "title": "Canapea",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/W3Rjfd2w/canapea-2.jpg",
     "price": "",
     "sales": "",
@@ -309,8 +309,8 @@
   },
   {
     "id": 38,
-    "title": "canapea",
-    "filter": "canapea",
+    "title": "Canapea",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/SsWq0mRF/canapea-3.jpg",
     "price": "",
     "sales": "",
@@ -320,8 +320,8 @@
   },
   {
     "id": 39,
-    "title": "canapea",
-    "filter": "canapea",
+    "title": "Canapea",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/3Jrh65HV/canapea-4.jpg",
     "price": "",
     "sales": "",
@@ -331,8 +331,8 @@
   },
   {
     "id": 40,
-    "title": "canapea",
-    "filter": "canapea",
+    "title": "Canapea",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/fRrMmHpF/canapea-5.jpg",
     "price": "",
     "sales": "",
@@ -342,8 +342,8 @@
   },
   {
     "id": 41,
-    "title": "canapea",
-    "filter": "canapea",
+    "title": "Canapea",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/GtKC2zvX/canapea-6.jpg",
     "price": "",
     "sales": "",
@@ -353,8 +353,8 @@
   },
   {
     "id": 42,
-    "title": "canapea",
-    "filter": "canapea",
+    "title": "Canapea",
+    "filter": "Canapea",
     "imageUrl": "https://i.postimg.cc/RCL9XC2w/canapea-7.jpg",
     "price": "",
     "sales": "",
@@ -364,7 +364,7 @@
   },
   {
     "id": 43,
-    "title": "mobilier baie",
+    "title": "Mobilier baie",
     "filter": "mobilier baie",
     "imageUrl": "https://i.postimg.cc/cLYFBCbS/mobilier-baie.jpg",
     "price": "",
@@ -375,7 +375,7 @@
   },
   {
     "id": 44,
-    "title": "dulap-comoda",
+    "title": "Dulap",
     "filter": "dulap comoda",
     "imageUrl": "https://i.postimg.cc/Y0rK6mHn/comoda.jpg",
     "price": "",
@@ -386,7 +386,7 @@
   },
   {
     "id": 45,
-    "title": "dulap-comoda",
+    "title": "Dulap",
     "filter": "dulap comoda",
     "imageUrl": "https://i.postimg.cc/vT0R3H8Q/comoda-2.jpg",
     "price": "",
@@ -397,7 +397,7 @@
   },
   {
     "id": 46,
-    "title": "dulap-comoda",
+    "title": "Dulap",
     "filter": "dulap comoda",
     "imageUrl": "https://i.postimg.cc/Nj9hkc3c/comoda-3.jpg",
     "price": "",
@@ -408,7 +408,7 @@
   },
   {
     "id": 47,
-    "title": "dulap-comoda",
+    "title": "Dulap",
     "filter": "dulap comoda",
     "imageUrl": "https://i.postimg.cc/dQ6Kqn2z/comoda-4.jpg",
     "price": "",
@@ -419,7 +419,7 @@
   },
   {
     "id": 48,
-    "title": "dulap-comoda",
+    "title": "Dulap",
     "filter": "dulap comoda",
     "imageUrl": "https://i.postimg.cc/43Vrj142/comoda-dulap.jpg",
     "price": "",
@@ -430,7 +430,7 @@
   },
   {
     "id": 49,
-    "title": "dulap-comoda",
+    "title": "Dulap",
     "filter": "dulap comoda",
     "imageUrl": "https://i.postimg.cc/YCJ5XP7m/comoda-dulap-2.jpg",
     "price": "",
@@ -441,7 +441,7 @@
   },
   {
     "id": 50,
-    "title": "dulap-comoda",
+    "title": "Dulap",
     "filter": "dulap comoda",
     "imageUrl": "https://i.postimg.cc/PJr9psW0/dulap.jpg",
     "price": "",
@@ -452,7 +452,7 @@
   },
   {
     "id": 51,
-    "title": "dulap-comoda",
+    "title": "Dulap",
     "filter": "dulap comoda",
     "imageUrl": "https://i.postimg.cc/YqyKF9yR/dulap-2.jpg",
     "price": "",
@@ -463,7 +463,7 @@
   },
   {
     "id": 52,
-    "title": "fotoliu",
+    "title": "Fotoliu",
     "filter": "fotoliu",
     "imageUrl": "https://i.postimg.cc/zvzwqqCH/fotoliu.jpg",
     "price": "",
@@ -474,7 +474,7 @@
   },
   {
     "id": 53,
-    "title": "fotoliu",
+    "title": "Fotoliu",
     "filter": "fotoliu",
     "imageUrl": "https://i.postimg.cc/prsfT3CG/fotoliu-2.jpg",
     "price": "",
@@ -485,7 +485,7 @@
   },
   {
     "id": 54,
-    "title": "fotoliu",
+    "title": "Fotoliu",
     "filter": "fotoliu",
     "imageUrl": "https://i.postimg.cc/SQd7Dz46/fotoliu-canapea.jpg",
     "price": "",
@@ -496,7 +496,7 @@
   },
   {
     "id": 55,
-    "title": "masa-scaun",
+    "title": "Masă cu scaune",
     "filter": "masa scaun",
     "imageUrl": "https://i.postimg.cc/vBcMkVj4/masa.jpg",
     "price": "",
@@ -507,7 +507,7 @@
   },
   {
     "id": 56,
-    "title": "masa-scaun",
+    "title": "Masă cu scaune",
     "filter": "masa scaun",
     "imageUrl": "https://i.postimg.cc/JnvmLhVP/masa-scaun.jpg",
     "price": "",
@@ -518,7 +518,7 @@
   },
   {
     "id": 57,
-    "title": "masa-scaun",
+    "title": "Masă cu scaune",
     "filter": "masa scaun",
     "imageUrl": "https://i.postimg.cc/HLWT0K94/masa-scaun-2.jpg",
     "price": "",
@@ -529,7 +529,7 @@
   },
   {
     "id": 58,
-    "title": "masa-scaun",
+    "title": "Masă cu scaune",
     "filter": "masa scaun",
     "imageUrl": "https://i.postimg.cc/GmCLt9Bf/masa-scaun-3.jpg",
     "price": "",
@@ -540,7 +540,7 @@
   },
   {
     "id": 59,
-    "title": "masa-scaun",
+    "title": "Masă cu scaune",
     "filter": "masa scaun",
     "imageUrl": "https://i.postimg.cc/J7HMQjZg/masa-scaun-4.jpg",
     "price": "",
@@ -551,7 +551,7 @@
   },
   {
     "id": 60,
-    "title": "masa-scaun",
+    "title": "Masă cu scaune",
     "filter": "masa scaun",
     "imageUrl": "https://i.postimg.cc/fRfw9ZmR/masa-scaun-5.jpg",
     "price": "",
@@ -562,7 +562,7 @@
   },
   {
     "id": 61,
-    "title": "masa-scaun",
+    "title": "Masă cu scaune",
     "filter": "masa scaun",
     "imageUrl": "https://i.postimg.cc/VN7mKR7y/masa-scaun-6.jpg",
     "price": "",
@@ -573,7 +573,7 @@
   },
   {
     "id": 62,
-    "title": "masa-scaun",
+    "title": "Masă cu scaune",
     "filter": "masa scaun",
     "imageUrl": "https://i.postimg.cc/ZnNmKhJZ/masa-scaun-7.jpg",
     "price": "",
@@ -584,7 +584,7 @@
   },
   {
     "id": 63,
-    "title": "saltea",
+    "title": "Saltea",
     "filter": "saltea",
     "imageUrl": "https://i.postimg.cc/Hx5vrW8S/pat-saltea.jpg",
     "price": "",
@@ -595,7 +595,7 @@
   },
   {
     "id": 64,
-    "title": "saltea",
+    "title": "Saltea",
     "filter": "saltea",
     "imageUrl": "https://i.postimg.cc/cCS9wqQd/saltea.jpg",
     "price": "",
@@ -606,7 +606,7 @@
   },
   {
     "id": 65,
-    "title": "saltea",
+    "title": "Saltea",
     "filter": "saltea",
     "imageUrl": "https://i.postimg.cc/SQ6tqshR/saltea-2.jpg",
     "price": "",
@@ -617,7 +617,7 @@
   },
   {
     "id": 66,
-    "title": "saltea",
+    "title": "Saltea",
     "filter": "saltea",
     "imageUrl": "https://i.postimg.cc/PJQ6M64Y/taburet.jpg",
     "price": "",

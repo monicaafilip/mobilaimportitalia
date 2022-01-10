@@ -24,15 +24,21 @@ function MyVerticallyCenteredModal(props) {
           </div>
         ) : (
           <div className="info">
-            <div className="price">
-              <b>Preț:</b> {props.price} {"\u20AC"}
-            </div>
-            <div className="size">
-              <b>Dimensiuni:</b> {props.size}
-            </div>
-            <div className="material">
-              <b>Material:</b> {props.material}
-            </div>
+            {props.price === "" ? null : (
+              <div className="price">
+                <b>Preț:</b> {props.price} {"\u20AC"}
+              </div>
+            )}
+            {props.size === "" ? null : (
+              <div className="size">
+                <b>Dimensiuni:</b> {props.size}
+              </div>
+            )}
+            {props.material === "" ? null : (
+              <div className="material">
+                <b>Material:</b> {props.material}
+              </div>
+            )}
             {props.other === "" ? null : (
               <div className="other">
                 <b>Alte informații:</b> {props.other}
