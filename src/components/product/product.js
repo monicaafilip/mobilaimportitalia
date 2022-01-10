@@ -24,11 +24,26 @@ function MyVerticallyCenteredModal(props) {
           </div>
         ) : (
           <div className="info">
-            {props.price === "" ? null : (
+            {props.sales !== "" && props.sales !== props.price ? (
+              <div className="price">
+                <b>Preț:</b>{" "}
+                <span>
+                  {props.sales}
+                  {"\u20AC"}
+                </span>{" "}
+                <span className="strike">
+                  <small>
+                    {props.price}
+                    {"\u20AC"}
+                  </small>
+                </span>
+              </div>
+            ) : null}
+            {props.price !== "" && props.sales === props.price ? (
               <div className="price">
                 <b>Preț:</b> {props.price} {"\u20AC"}
               </div>
-            )}
+            ) : null}{" "}
             {props.size === "" ? null : (
               <div className="size">
                 <b>Dimensiuni:</b> {props.size}
@@ -53,7 +68,6 @@ function MyVerticallyCenteredModal(props) {
 
 const Product = ({ title, imageUrl, price, sales, size, material, other }) => {
   const [modalShow, setModalShow] = React.useState(false);
-
   return (
     <div>
       <div className="card">

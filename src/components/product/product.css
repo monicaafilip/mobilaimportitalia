@@ -55,3 +55,18 @@
   line-height: 19px;
   justify-content: center;
 }
+
+.price span:nth-child(1) {
+  color: #42b72a;
+  font-weight: 800;
+}
+
+.price span:nth-child(2) {
+  position: relative;
+  font-size: 2vw;
+  color: #df1616;
+}
+
+.strike {
+  text-decoration-line: line-through;
+}
