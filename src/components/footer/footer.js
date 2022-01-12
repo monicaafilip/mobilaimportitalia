@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./footer.css";
 
 const Footer = () => {
@@ -9,17 +10,17 @@ const Footer = () => {
           <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
             <img src="img/logo.png" alt="" width="180" className="mb-3" />
             <p className="font-italic text-muted">
-              Modern Design <br/> Mobilă nouă și second-hand import Italia.
+              Modern Design <br /> Mobilă nouă și second-hand import Italia.
             </p>
             <ul className="list-inline mt-4">
               <li className="list-inline-item">
-                <a href='https://www.facebook.com/moderndesign.mobilaimportitalia'>
+                <a href="https://www.facebook.com/moderndesign.mobilaimportitalia">
                   <i className="fa fa-facebook"></i>
                 </a>
               </li>
               <li className="list-inline-item">
-                <a href='https://pin.it/6PmlJa4'>
-                  <i className="fa fa-pinterest"/>
+                <a href="https://pin.it/6PmlJa4">
+                  <i className="fa fa-pinterest" />
                 </a>
               </li>
             </ul>
@@ -28,14 +29,18 @@ const Footer = () => {
           <div className="col-lg-4 col-md-6 mb-lg-0 text-white">
             <h6 className="text-uppercase mb-4 font-weight-bold">Contact</h6>
             <p>
-              <i className="fa fa-home mr-3"></i> Cajvana, nr 2058, Suceava,
+              <i className="fa fa-home mr-3" /> Cajvana, nr 2058, Suceava,
               România
             </p>
             <p>
-              <i className="fa fa-envelope mr-3"></i> moderndesign.importitalia@gmail.com
+              <i className="fa fa-envelope mr-3" />{" "}
+              moderndesign.importitalia@gmail.com
             </p>
             <p>
-              <i className="fa fa-phone mr-3"></i> +40746 086 433
+              <i className="fa fa-phone mr-3" />{" "}
+              <a className="phone-number" href="tel:+40746 086 433">
+                +40746 086 433
+              </a>
             </p>
           </div>
         </div>

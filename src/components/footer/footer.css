@@ -1,26 +1,30 @@
 .fa-facebook {
-	color: #3b5998;
+  color: #3b5998;
 }
 
 .fa-instagram {
-	color: #ffffff;
+  color: #ffffff;
 }
 
 .fa-pinterest {
-	color: #f54141
+  color: #f54141;
 }
 
 .socialWrapper {
-	margin: auto;
+  margin: auto;
 }
 
 .footerText {
-	text-align: center;
-	color: #cccccc;
-	display: block;
-	margin: auto;
+  text-align: center;
+  color: #cccccc;
+  display: block;
+  margin: auto;
 }
 
 .footerRow {
-	padding: 20px;
+  padding: 20px;
+}
+
+.phone-number {
+  text-decoration: none;
 }
