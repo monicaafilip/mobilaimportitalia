@@ -70,3 +70,23 @@
 .strike {
   text-decoration-line: line-through;
 }
+
+/* For Mobile */
+@media screen and (max-width: 540px) {
+  .info {
+    font-size: 3.5vw;
+  }
+  .price span:nth-child(2) {
+    font-size: 3vw;
+  }
+}
+
+/* For Tablets */
+@media screen and (min-width: 540px) and (max-width: 780px) {
+  .info {
+    font-size: 3.5vw;
+  }
+  .price span:nth-child(2) {
+    font-size: 3vw;
+  }
+}
