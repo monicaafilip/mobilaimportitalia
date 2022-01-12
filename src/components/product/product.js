@@ -20,7 +20,11 @@ function MyVerticallyCenteredModal(props) {
         {props.price === "" && props.size === "" && props.material === "" ? (
           <div className="info">
             Informațiile nu au fost adăugate încă. Pentru mai multe detalii
-            sunați la: +40746 086 433!
+            sunați la:{" "}
+            <a className="phone-number" href="tel:+40746 086 433">
+              +40746 086 433
+            </a>
+            !
           </div>
         ) : (
           <div className="info">

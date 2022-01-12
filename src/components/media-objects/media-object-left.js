@@ -20,7 +20,11 @@ const MediaObjectLeft = () => {
           <h5>Adresă</h5>
           <p>Cajvana, nr 2058 jud. Suceava, Romania</p>
           <h5>Contact</h5>
-          <p>+40746 086 433</p>
+          <p>
+            <a className="phone-number" href="tel:+40746 086 433">
+              +40746 086 433
+            </a>
+          </p>
         </div>
       </div>
     </div>
