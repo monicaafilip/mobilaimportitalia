@@ -137,6 +137,13 @@ class Directory extends React.Component {
             >
               Fotolii
             </Button>{" "}
+            <Button
+              className="categorie mt-1 mb-1"
+              variant="outline-dark"
+              onClick={() => this.filter("reduceri")}
+            >
+              Reduceri
+            </Button>{" "}
           </div>
           <ResponsiveMasonry
             columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
