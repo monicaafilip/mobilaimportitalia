@@ -10,7 +10,6 @@
 .productsBtn {
   margin: auto;
 }
-
 @media (max-width: 576px) {
   .h1VWSize {
     font-size: 5vw;
