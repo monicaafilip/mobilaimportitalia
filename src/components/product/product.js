@@ -31,22 +31,16 @@ function MyVerticallyCenteredModal(props) {
             {props.sales !== "" && props.sales !== props.price ? (
               <div className="price">
                 {/* <b>Preț:</b>{" "} */}
-                <span>
-                  {props.sales}
-                  {"\u20AC"}
-                </span>{" "}
+                <span>{props.sales} RON</span>{" "}
                 <span className="strike">
-                  <small>
-                    {props.price}
-                    {"\u20AC"}
-                  </small>
+                  <small>{props.price} RON</small>
                 </span>
               </div>
             ) : null}
             {props.price !== "" && props.sales === props.price ? (
               <div className="price">
                 {/* <b>Preț:</b> */}
-                {props.price} {"\u20AC"}
+                {props.price} RON
               </div>
             ) : null}{" "}
             {props.size === "" ? null : (
