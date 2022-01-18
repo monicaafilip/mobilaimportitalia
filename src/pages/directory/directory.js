@@ -2,7 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import { connect } from "react-redux";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import "./directory.css";
 import "../../App.css";
