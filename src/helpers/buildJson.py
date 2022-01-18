@@ -19,7 +19,16 @@ count = 0
 for url in urls:
     print(url)
     count+=1
-    local = ''' { "id": ''' + str(id) + ''', "title": "''' + title + '''", "url":"''' + url + '''"}'''
+    local = ''' { "id": ''' + str(id) + \
+    ''', "title": "''' + title + '''",''' \
+    '''"filter":"",''' + \
+    '''"imageUrl":["''' + url + '''"],''' + \
+    '''"price":"",''' + \
+    '''"sales":"",''' + \
+    '''"material":"",''' + \
+    '''"location":"",''' + \
+    '''"other":""''' + \
+    '''}'''
     id+=1
     if count != len(urls):
         local += ',\n'
