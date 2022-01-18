@@ -168,7 +168,7 @@ class Directory extends React.Component {
               </Button>
             </div>
           ) : null}
-          <ul className="pagination-list">
+          {/* <ul className="pagination-list">
             <ButtonToolbar
               key="toolbar"
               aria-label="Toolbar with button groups"
@@ -192,7 +192,7 @@ class Directory extends React.Component {
                 )}
               </ButtonGroup>
             </ButtonToolbar>
-          </ul>
+          </ul> */}
           <Footer />
         </div>
       </div>
