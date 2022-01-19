@@ -2,7 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import { connect } from "react-redux";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import "./directory.css";
 import "../../App.css";
@@ -172,7 +172,7 @@ class Directory extends React.Component {
               </Button>
             ) : null}
           </div>
-          <ul className="pagination-list">
+          {/* <ul className="pagination-list">
             <ButtonToolbar
               key="toolbar"
               aria-label="Toolbar with button groups"
@@ -196,7 +196,7 @@ class Directory extends React.Component {
                 )}
               </ButtonGroup>
             </ButtonToolbar>
-          </ul>
+          </ul> */}
           <Footer />
         </div>
       </div>
