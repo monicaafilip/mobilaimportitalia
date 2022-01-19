@@ -2,10 +2,6 @@ import React from "react";
 import ReactGA from "react-ga";
 import { connect } from "react-redux";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { Button } from "react-bootstrap";
-
-import "./directory.css";
-import "../../App.css";
 
 import MyNavbar from "../../components/mynavbar/mynavbar";
 import Product from "../../components/product/product";
@@ -17,6 +13,12 @@ import {
   loadExactPage,
   filterByCategory,
 } from "../../redux/directory/directory.actions";
+
+import Filters from "./filters";
+import Pagination from "../../components/pagination/pagination.component";
+
+import "./directory.scss";
+import "../../App.css";
 
 let perPage = 10;
 
@@ -30,6 +32,10 @@ class Directory extends React.Component {
     else pageView = pathname;
 
     ReactGA.pageview(pageView);
+
+    this.goToPage = this.goToPage.bind(this);
+    this.filter = this.filter.bind(this);
+    this.renderAll = this.renderAll.bind(this);
   }
   componentDidMount() {
     this.props.dispatch(loadData({ countPerPage: perPage }));
@@ -41,14 +47,13 @@ class Directory extends React.Component {
   filter(cat) {
     this.props.dispatch(filterByCategory({ category: cat }));
   }
+
   nextPage() {
     this.props.dispatch(loadNewPage({ page: 1 }));
   }
-
   previousPage() {
     this.props.dispatch(loadNewPage({ page: -1 }));
   }
-
   goToPage(page) {
     this.props.dispatch(loadExactPage({ page }));
   }
@@ -61,92 +66,7 @@ class Directory extends React.Component {
       <div className="App">
         <div className="container-fluid mainHomePage">
           <MyNavbar />
-          <div className="categorii">
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.renderAll()}
-            >
-              Toate
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("bucatarie")}
-            >
-              Bucătărie
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("baie")}
-            >
-              Baie
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("canapea")}
-            >
-              Canapele
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("dulap")}
-            >
-              Dulapuri
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("pat")}
-            >
-              Paturi
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("masa")}
-            >
-              Mese
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("scaun")}
-            >
-              Scaune
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("frigider")}
-            >
-              Frigidere
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("saltea")}
-            >
-              Saltele
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("fotoliu")}
-            >
-              Fotolii
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("reduceri")}
-            >
-              Reduceri
-            </Button>{" "}
-          </div>
+          <Filters filter={this.filter} renderAll={this.renderAll} />
           <ResponsiveMasonry
             columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
           >
@@ -156,47 +76,13 @@ class Directory extends React.Component {
               ))}
             </Masonry>
           </ResponsiveMasonry>
-          <div className="previous-next-buttons">
-            {currentPage > 1 ? (
-              <Button
-                variant="outline-dark"
-                onClick={() => this.previousPage()}
-              >
-                Previous page
-              </Button>
-            ) : null}
-            {"  "}
-            {currentPage < filteredPages ? (
-              <Button variant="outline-dark" onClick={() => this.nextPage()}>
-                Next page
-              </Button>
-            ) : null}
-          </div>
-          {/* <ul className="pagination-list">
-            <ButtonToolbar
-              key="toolbar"
-              aria-label="Toolbar with button groups"
-            >
-              <ButtonGroup
-                key="group"
-                className="me-2"
-                aria-label="First group"
-              >
-                {[...Array(this.props.state.prods.filteredPages)].map(
-                  (value, index) => (
-                    <Button
-                      key={index}
-                      aria-label="Page 1"
-                      onClick={() => this.goToPage(index + 1)}
-                      aria-current="page"
-                    >
-                      {index + 1}
-                    </Button>
-                  )
-                )}
-              </ButtonGroup>
-            </ButtonToolbar>
-          </ul> */}
+
+          <Pagination
+            currentPage={currentPage}
+            lastPage={filteredPages}
+            totalPageCount={this.props.state.prods.filteredPages}
+            goToPage={this.goToPage}
+          />
           <Footer />
         </div>
       </div>
