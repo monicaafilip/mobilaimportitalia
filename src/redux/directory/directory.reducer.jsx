@@ -93,25 +93,18 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 
       let perPage = loadNewPageState.countPerPage;
 
-      if (
-        action.payload.filteredProducts &&
-        action.payload.filteredProducts.length < perPage
-      )
-        perPage = action.payload.filteredProducts.length;
-
       let nextProducts;
       if (addPages === 1) {
-        //Moving from page 1 to 2 will cause ‘upperCount’ to be 40
         let upperCount = loadNewPageState.currentCount + perPage;
-        let lowerCount = loadNewPageState.currentCount; //This hasn’t been changed. It will remain 20.
+        let lowerCount = loadNewPageState.currentCount;
 
         loadNewPageState.currentCount += loadNewPageState.countPerPage;
         nextProducts = loadNewPageState.products.slice(lowerCount, upperCount);
       }
 
       if (addPages === -1) {
-        let upperCount = loadNewPageState.currentCount; //40
-        let lowerCount = loadNewPageState.currentCount - perPage; //20
+        let upperCount = loadNewPageState.currentCount;
+        let lowerCount = loadNewPageState.currentCount - perPage;
 
         loadNewPageState.currentCount -= loadNewPageState.countPerPage;
         nextProducts = loadNewPageState.products.slice(
@@ -121,8 +114,6 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       }
 
       loadNewPageState.filteredProducts = nextProducts;
-      // Don't use window.history.pushState() here in production
-      // It's better to keep redirections predictable
       window.history.pushState(
         { page: 1 },
         "title 1",

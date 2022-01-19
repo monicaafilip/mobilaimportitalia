@@ -70,7 +70,6 @@ function MyVerticallyCenteredModal(props) {
 
 const Product = ({ title, imageUrl, price, sales, size, material, other }) => {
   const [modalShow, setModalShow] = React.useState(false);
-  console.log(imageUrl);
   return (
     <div>
       <div className="card">

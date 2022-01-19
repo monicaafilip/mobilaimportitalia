@@ -2,7 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import { connect } from "react-redux";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { Button } from "react-bootstrap";
+import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 
 import "./directory.css";
 import "../../App.css";
@@ -55,6 +55,8 @@ class Directory extends React.Component {
 
   render() {
     let products = this.props.state.prods.filteredProducts;
+    let currentPage = this.props.state.prods.currentPage;
+    let filteredPages = this.props.state.prods.filteredPages;
     return (
       <div className="App">
         <div className="container-fluid mainHomePage">
@@ -154,21 +156,23 @@ class Directory extends React.Component {
               ))}
             </Masonry>
           </ResponsiveMasonry>
-          {products.length > 9 ? (
-            <div className="previous-next-buttons">
+          <div className="previous-next-buttons">
+            {currentPage > 1 ? (
               <Button
                 variant="outline-dark"
                 onClick={() => this.previousPage()}
               >
                 Previous page
               </Button>
-              {"  "}
+            ) : null}
+            {"  "}
+            {currentPage < filteredPages ? (
               <Button variant="outline-dark" onClick={() => this.nextPage()}>
                 Next page
               </Button>
-            </div>
-          ) : null}
-          {/* <ul className="pagination-list">
+            ) : null}
+          </div>
+          <ul className="pagination-list">
             <ButtonToolbar
               key="toolbar"
               aria-label="Toolbar with button groups"
@@ -192,7 +196,7 @@ class Directory extends React.Component {
                 )}
               </ButtonGroup>
             </ButtonToolbar>
-          </ul> */}
+          </ul>
           <Footer />
         </div>
       </div>
