@@ -34,6 +34,8 @@ class Directory extends React.Component {
     ReactGA.pageview(pageView);
 
     this.goToPage = this.goToPage.bind(this);
+    this.previousPage = this.previousPage.bind(this);
+    this.nextPage = this.nextPage.bind(this);
     this.filter = this.filter.bind(this);
     this.renderAll = this.renderAll.bind(this);
   }
@@ -82,6 +84,8 @@ class Directory extends React.Component {
             lastPage={filteredPages}
             totalPageCount={this.props.state.prods.filteredPages}
             goToPage={this.goToPage}
+            previousPage={this.previousPage}
+            nextPage={this.nextPage}
           />
           <Footer />
         </div>

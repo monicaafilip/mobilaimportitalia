@@ -44,12 +44,18 @@ const paginationRange = (currentPage, totalPageCount) => {
     return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
   }
 };
-const Pagination = ({ currentPage, lastPage, goToPage }) => {
+const Pagination = ({
+  currentPage,
+  lastPage,
+  goToPage,
+  previousPage,
+  nextPage,
+}) => {
   return (
     <ul className="pagination-container">
       <li
         className={`pagination-item ${currentPage === 1 ? "disabled" : ""}`}
-        onClick={() => goToPage(-1)}
+        onClick={() => previousPage()}
       >
         <div className="arrow left" />
       </li>
@@ -73,7 +79,7 @@ const Pagination = ({ currentPage, lastPage, goToPage }) => {
         className={`pagination-item ${
           currentPage === lastPage ? "disabled" : ""
         }`}
-        onClick={() => goToPage(1)}
+        onClick={() => nextPage()}
       >
         <div className="arrow right" />
       </li>
