@@ -255,34 +255,10 @@
     "other": ""
   },
   {
-    "id": 22,
-    "title": "Dulap",
-    "filter": "dulap",
-    "imageUrl": ["https://i.postimg.cc/TwDCrkdK/IMG-20210727-095433.jpg"],
-    "price": "",
-    "sales": "",
-    "size": "",
-    "material": "",
-    "location": "",
-    "other": ""
-  },
-  {
-    "id": 23,
-    "title": "Dulap",
-    "filter": "dulap",
-    "imageUrl": ["https://i.postimg.cc/D0Q6N8bF/IMG-20210727-095451.jpg"],
-    "price": "",
-    "sales": "",
-    "size": "",
-    "material": "",
-    "location": "",
-    "other": ""
-  },
-  {
     "id": 24,
     "title": "Servantă",
     "filter": "dulap-servanta",
-    "imageUrl": ["https://i.postimg.cc/KvNQr32D/IMG-20210728-092847.jpg"],
+    "imageUrl": ["https://i.postimg.cc/DyTN0Q72/IMG-20210728-092847.jpg"],
     "price": "1250",
     "sales": "1250",
     "size": "",
@@ -675,17 +651,6 @@
     "other": ""
   },
   {
-    "id": 57,
-    "title": "Canapea 2 locuri",
-    "filter": "canapea",
-    "imageUrl": ["https://i.postimg.cc/Ss2VdJb5/canapea-300.jpg"],
-    "price": "300",
-    "sales": "300",
-    "material": "",
-    "location": "Danila",
-    "other": ""
-  },
-  {
     "id": 58,
     "title": "Canapea 2 locuri",
     "filter": "canapea",
@@ -733,20 +698,6 @@
     "other": ""
   },
   {
-    "id": 62,
-    "title": "Canapea 3+2",
-    "filter": "canapea",
-    "imageUrl": [
-      "https://i.postimg.cc/5ttsHs7f/canapea-3-2-700.jpg",
-      "https://i.postimg.cc/wjgfzqDy/canapea-3-2-700-2.jpg"
-    ],
-    "price": "700",
-    "sales": "700",
-    "material": "",
-    "location": "Danila",
-    "other": ""
-  },
-  {
     "id": 63,
     "title": "Canapea 3+2",
     "filter": "canapea",
@@ -775,19 +726,6 @@
     "other": ""
   },
   {
-    "id": 65,
-    "title": "Canapea cu i post relax",
-    "filter": "canapea",
-    "imageUrl": [
-      "https://i.postimg.cc/KYVD1x35/canapea-cu-i-post-relax-350.jpg"
-    ],
-    "price": "350",
-    "sales": "350",
-    "material": "",
-    "location": "Danila",
-    "other": ""
-  },
-  {
     "id": 66,
     "title": "Canapea extensibilă",
     "filter": "canapea",
@@ -805,17 +743,6 @@
     "imageUrl": ["https://i.postimg.cc/wM5X4NfW/canapea-extensibila-600.jpg"],
     "price": "600",
     "sales": "600",
-    "material": "",
-    "location": "Danila",
-    "other": ""
-  },
-  {
-    "id": 68,
-    "title": "Canapea extensibilă",
-    "filter": "canapea",
-    "imageUrl": ["https://i.postimg.cc/VsXWNyfj/canapea-extensibila-700.jpg"],
-    "price": "700",
-    "sales": "700",
     "material": "",
     "location": "Danila",
     "other": ""
