@@ -61,9 +61,10 @@ class Directory extends React.Component {
   }
 
   render() {
-    let products = this.props.state.prods.filteredProducts;
+    let products = this.props.state.prods.valuesPerPage;
     let currentPage = this.props.state.prods.currentPage;
     let filteredPages = this.props.state.prods.filteredPages;
+
     return (
       <div className="App">
         <div className="container-fluid mainHomePage">

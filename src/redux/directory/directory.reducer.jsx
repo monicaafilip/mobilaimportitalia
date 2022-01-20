@@ -22,6 +22,10 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         );
 
         newState.filteredProducts = filteredValues;
+        newState.valuesPerPage = newState.filteredProducts.slice(
+          0,
+          newState.countPerPage
+        );
         newState.filteredCount = newState.filteredProducts.length;
         newState.filteredPages = Math.ceil(
           newState.filteredCount / newState.countPerPage
@@ -53,7 +57,8 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         products,
-        filteredProducts: products.slice(0, countPerPage),
+        filteredProducts: products,
+        valuesPerPage: products.slice(0, countPerPage),
         currentCount: countPerPage,
         countPerPage,
         totalCount: count,
@@ -68,11 +73,11 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       let upperCountExact = exactPageState.countPerPage * exactPage;
       let lowerCountExact = upperCountExact - exactPageState.countPerPage;
 
-      let exactProducts = exactPageState.products.slice(
+      let exactProducts = exactPageState.filteredProducts.slice(
         lowerCountExact,
         upperCountExact
       );
-      exactPageState.filteredProducts = exactProducts;
+      exactPageState.valuesPerPage = exactProducts;
       exactPageState.currentCount = upperCountExact;
       exactPageState.currentPage = exactPage;
       window.history.pushState(
@@ -99,7 +104,10 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         let lowerCount = loadNewPageState.currentCount;
 
         loadNewPageState.currentCount += loadNewPageState.countPerPage;
-        nextProducts = loadNewPageState.products.slice(lowerCount, upperCount);
+        nextProducts = loadNewPageState.filteredProducts.slice(
+          lowerCount,
+          upperCount
+        );
       }
 
       if (addPages === -1) {
@@ -107,13 +115,13 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         let lowerCount = loadNewPageState.currentCount - perPage;
 
         loadNewPageState.currentCount -= loadNewPageState.countPerPage;
-        nextProducts = loadNewPageState.products.slice(
+        nextProducts = loadNewPageState.filteredProducts.slice(
           lowerCount - perPage,
           upperCount - perPage
         );
       }
 
-      loadNewPageState.filteredProducts = nextProducts;
+      loadNewPageState.valuesPerPage = nextProducts;
       window.history.pushState(
         { page: 1 },
         "title 1",
