@@ -5,6 +5,11 @@ export const filterByCategory = (payload) => ({
   payload,
 });
 
+export const filterByPrice = (payload) => ({
+  type: DirectoryTypes.FILTER_BY_PRICE,
+  payload,
+});
+
 export const loadData = (payload) => ({
   type: DirectoryTypes.LOAD_DATA,
   payload,

@@ -1,17 +1,14 @@
-.search {
-  padding: 10px 20%;
+.content {
+  display: flex;
+  flex-direction: row;
 }
 
-.categorii {
-  padding: 10px 10%;
+.filters {
+  width: 5%;
+  height: 100vw;
 }
-.previous-next-buttons {
-  padding: 10px 0% 10px 0%;
-  margin: 5px;
-}
-.pagination-list {
-  padding: 10px 0 10px 0%;
-}
-.is-current {
-  color: red !important;
+
+.products {
+  width: 95%;
+  height: auto;
 }

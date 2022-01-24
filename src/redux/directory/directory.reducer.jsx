@@ -16,21 +16,19 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       let appliedFilters = state.appliedFilters;
 
       if (category) {
+        newState.category = category;
         appliedFilters = addFilterIfNotExists(
           DirectoryTypes.FILTER_BY_CATEGORY,
           appliedFilters
         );
 
         newState.filteredProducts = filteredValues;
-        newState.valuesPerPage = newState.filteredProducts.slice(
-          0,
-          newState.countPerPage
-        );
         newState.filteredCount = newState.filteredProducts.length;
         newState.filteredPages = Math.ceil(
           newState.filteredCount / newState.countPerPage
         );
       } else {
+        newState.category = "";
         appliedFilters = removeFilter(
           DirectoryTypes.FILTER_BY_CATEGORY,
           appliedFilters
@@ -42,8 +40,73 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
           newState.filteredPages = Math.ceil(
             newState.filteredCount / newState.countPerPage
           );
+        } else {
+          // TODOMF
         }
       }
+      newState.valuesPerPage = newState.filteredProducts.slice(
+        0,
+        newState.countPerPage
+      );
+      console.log(newState);
+      return newState;
+    }
+    case DirectoryTypes.FILTER_BY_PRICE: {
+      let newState = Object.assign({}, state);
+      let minValue = parseInt(action.payload.minValue);
+      let maxValue = parseInt(action.payload.maxValue);
+
+      let appliedFilters = state.appliedFilters;
+      let filteredValues = [];
+      let filterFunction = (product) => {
+        if (product.price === product.sales) {
+          return parseInt(product.price) <= maxValue &&
+            parseInt(product.price) >= minValue
+            ? product
+            : null;
+        } else
+          return parseInt(product.sales) <= maxValue &&
+            parseInt(product.sales) >= minValue
+            ? product
+            : null;
+      };
+
+      filteredValues = newState.products.filter(filterFunction);
+
+      if (minValue !== 0 || maxValue !== 10000) {
+        appliedFilters = addFilterIfNotExists(
+          DirectoryTypes.FILTER_BY_PRICE,
+          appliedFilters
+        );
+
+        newState.filteredProducts = filteredValues;
+        newState.filteredCount = newState.filteredProducts.length;
+        newState.filteredPages = Math.ceil(
+          newState.filteredCount / newState.countPerPage
+        );
+      } else {
+        appliedFilters = removeFilter(
+          DirectoryTypes.FILTER_BY_PRICE,
+          appliedFilters
+        );
+
+        newState.minPrice = 0;
+        newState.maxPrice = 10000;
+
+        if (appliedFilters.length === 0) {
+          newState.filteredProducts = newState.products;
+          newState.filteredCount = newState.filteredProducts.length;
+          newState.filteredPages = Math.ceil(
+            newState.filteredCount / newState.countPerPage
+          );
+        } else {
+          // !!TODOMF
+        }
+      }
+      newState.valuesPerPage = newState.filteredProducts.slice(
+        0,
+        newState.countPerPage
+      );
       return newState;
     }
     case DirectoryTypes.LOAD_DATA: {
