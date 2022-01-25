@@ -15,6 +15,8 @@ class Filters extends React.Component {
     fridge: false,
     mattress: false,
     armchair: false,
+    danila: false,
+    cajvana: false,
   };
   onCheckKitchen = (event) => {
     this.setState(() => ({
@@ -177,6 +179,29 @@ class Filters extends React.Component {
     else this.props.renderAll();
   };
 
+  onCheckCajvana = (event) => {
+    this.setState(() => ({
+      cajvana: !this.state.cajvana,
+      danila: false,
+    }));
+    if (event.target.checked) {
+      this.props.filterLocation("cajvana");
+    } else {
+      this.props.filterLocation(null);
+    }
+  };
+  onCheckDanila = (event) => {
+    this.setState(() => ({
+      cajvana: false,
+      danila: !this.state.danila,
+    }));
+    if (event.target.checked) {
+      this.props.filterLocation("danila");
+    } else {
+      this.props.filterLocation(null);
+    }
+  };
+
   onSubmit = (e) => {
     e.preventDefault();
   };
@@ -310,6 +335,32 @@ class Filters extends React.Component {
           max={10000}
           onChange={({ min, max }) => this.props.filterByPrice(min, max)}
         />
+        <div className="location">
+          <div className="form-check">
+            <input
+              checked={this.state.cajvana}
+              type="checkbox"
+              className="form-check-input"
+              id="cajvana"
+              onChange={(e) => this.onCheckCajvana(e)}
+            />
+            <label className="form-check-label" htmlFor="cajvana">
+              Cajvana
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              checked={this.state.danila}
+              type="checkbox"
+              className="form-check-input"
+              id="danila"
+              onChange={(e) => this.onCheckDanila(e)}
+            />
+            <label className="form-check-label" htmlFor="danila">
+              Dănila
+            </label>
+          </div>
+        </div>
       </div>
     );
   }

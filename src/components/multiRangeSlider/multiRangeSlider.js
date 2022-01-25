@@ -46,7 +46,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
   }, [minVal, maxVal, onChange]);
 
   return (
-    <div>
+    <div className="multirange">
       <h2 className="price">Preț</h2>
       <div className="container">
         <input

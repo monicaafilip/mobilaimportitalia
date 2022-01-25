@@ -10,6 +10,11 @@ export const filterByPrice = (payload) => ({
   payload,
 });
 
+export const filterByLocation = (payload) => ({
+  type: DirectoryTypes.FILTER_BY_LOCATION,
+  payload,
+});
+
 export const loadData = (payload) => ({
   type: DirectoryTypes.LOAD_DATA,
   payload,

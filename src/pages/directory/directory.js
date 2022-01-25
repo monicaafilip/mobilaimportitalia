@@ -13,6 +13,7 @@ import {
   loadExactPage,
   filterByCategory,
   filterByPrice,
+  filterByLocation,
 } from "../../redux/directory/directory.actions";
 
 import Filters from "./filters/filters";
@@ -43,6 +44,7 @@ class Directory extends React.Component {
     this.nextPage = this.nextPage.bind(this);
     this.filter = this.filter.bind(this);
     this.filterPrice = this.filterPrice.bind(this);
+    this.filterLocation = this.filterLocation.bind(this);
     this.renderAll = this.renderAll.bind(this);
   }
   componentDidMount() {
@@ -77,6 +79,9 @@ class Directory extends React.Component {
       );
     }
   }
+  filterLocation(loc) {
+    this.props.dispatch(filterByLocation({ location: loc }));
+  }
 
   nextPage() {
     this.props.dispatch(loadNewPage({ page: 1 }));
@@ -103,6 +108,7 @@ class Directory extends React.Component {
               filter={this.filter}
               renderAll={this.renderAll}
               filterByPrice={this.filterPrice}
+              filterLocation={this.filterLocation}
             />
 
             <ResponsiveMasonry

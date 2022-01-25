@@ -13,46 +13,13 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         return product.filter.toLowerCase().includes(category);
       });
 
-      let appliedFilters = state.appliedFilters;
-      if (category) {
-        newState.category = category;
-        appliedFilters = addFilterIfNotExists(
-          DirectoryTypes.FILTER_BY_CATEGORY,
-          appliedFilters
-        );
-        appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
-
-        console.log(appliedFilters);
-        if (appliedFilters.length > 1) {
-          newState.filteredProducts = filterWithManyFilters(appliedFilters);
-        } else newState.filteredProducts = filteredValues;
-
-        newState.filteredCount = newState.filteredProducts.length;
-        newState.filteredPages = Math.ceil(
-          newState.filteredCount / newState.countPerPage
-        );
-      } else {
-        appliedFilters = removeFilter(
-          DirectoryTypes.FILTER_BY_CATEGORY,
-          appliedFilters
-        );
-
-        if (appliedFilters.length === 0) {
-          newState.filteredProducts = newState.products;
-        } else {
-          newState.filteredProducts = filterWithManyFilters(appliedFilters);
-        }
-        newState.filteredCount = newState.filteredProducts.length;
-        newState.filteredPages = Math.ceil(
-          newState.filteredCount / newState.countPerPage
-        );
-      }
-      newState.valuesPerPage = newState.filteredProducts.slice(
-        0,
-        newState.countPerPage
+      return updateState(
+        state,
+        newState,
+        filteredValues,
+        category,
+        DirectoryTypes.FILTER_BY_CATEGORY
       );
-      console.log(newState);
-      return newState;
     }
     case DirectoryTypes.FILTER_BY_PRICE: {
       let newState = Object.assign({}, state);
@@ -60,6 +27,7 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       let maxValue = parseInt(action.payload.maxValue);
 
       let appliedFilters = state.appliedFilters;
+
       let filteredValues = [];
       let filterFunction = (product) => {
         if (product.price === product.sales) {
@@ -83,7 +51,6 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         );
         appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
 
-        console.log(appliedFilters);
         if (appliedFilters.length > 1) {
           newState.filteredProducts = filterWithManyFilters(appliedFilters);
         } else newState.filteredProducts = filteredValues;
@@ -112,8 +79,22 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         0,
         newState.countPerPage
       );
-      console.log(newState);
       return newState;
+    }
+    case DirectoryTypes.FILTER_BY_LOCATION: {
+      let newState = Object.assign({}, state);
+      let location = action.payload.location;
+      let filteredValues = state.products.filter((product) => {
+        return product.location.toLowerCase().includes(location);
+      });
+
+      return updateState(
+        state,
+        newState,
+        filteredValues,
+        location,
+        DirectoryTypes.FILTER_BY_LOCATION
+      );
     }
     case DirectoryTypes.LOAD_DATA: {
       let products = data;
@@ -205,21 +186,51 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 
 export default directoryReducer;
 
+function updateState(state, newState, filteredValues, payloadValue, type) {
+  let appliedFilters = state.appliedFilters;
+
+  if (payloadValue) {
+    appliedFilters = addFilterIfNotExists(type, appliedFilters);
+    appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+
+    if (appliedFilters.length > 1) {
+      newState.filteredProducts = filterWithManyFilters(appliedFilters);
+    } else newState.filteredProducts = filteredValues;
+
+    newState.filteredCount = newState.filteredProducts.length;
+    newState.filteredPages = Math.ceil(
+      newState.filteredCount / newState.countPerPage
+    );
+  } else {
+    appliedFilters = removeFilter(type, appliedFilters);
+
+    if (appliedFilters.length === 0) {
+      newState.filteredProducts = newState.products;
+    } else {
+      newState.filteredProducts = filterWithManyFilters(appliedFilters);
+    }
+    newState.filteredCount = newState.filteredProducts.length;
+    newState.filteredPages = Math.ceil(
+      newState.filteredCount / newState.countPerPage
+    );
+  }
+  newState.valuesPerPage = newState.filteredProducts.slice(
+    0,
+    newState.countPerPage
+  );
+  return newState;
+}
+
 function filterWithManyFilters(appliedFilters) {
   if (appliedFilters.length === 1) return appliedFilters[0]["values"];
 
   let index = 0;
-  let finalFilteredValues = [];
-  let filteredValues = appliedFilters[appliedFilters.length - 1]["values"];
+  let finalFilteredValues = appliedFilters[appliedFilters.length - 1]["values"];
   while (index < appliedFilters.length - 1) {
     let values = appliedFilters[index]["values"];
 
-    finalFilteredValues = filteredValues.filter(function (o1) {
+    finalFilteredValues = finalFilteredValues.filter(function (o1) {
       return values.some(function (o2) {
-        if (o1["id"] === o2["id"]) {
-          console.log(o1);
-          console.log(o2);
-        }
         return o1["id"] === o2["id"];
       });
     });
@@ -253,7 +264,6 @@ function removeFilter(filter, appliedFilters) {
         break;
       }
     appliedFilters.splice(index, 1);
-    console.log(appliedFilters);
   }
   return appliedFilters;
 }
