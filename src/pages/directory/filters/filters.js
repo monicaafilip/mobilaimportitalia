@@ -192,7 +192,7 @@ class Filters extends React.Component {
               id="kitchen"
               onChange={(e) => this.onCheckKitchen(e)}
             />
-            <label className="form-check-label" for="kitchen">
+            <label className="form-check-label" htmlFor="kitchen">
               Bucătărie
             </label>
           </div>
@@ -204,7 +204,7 @@ class Filters extends React.Component {
               id="bathroom"
               onChange={(e) => this.onCheckBathroom(e)}
             />
-            <label className="form-check-label" for="bathroom">
+            <label className="form-check-label" htmlFor="bathroom">
               Baie
             </label>
           </div>
@@ -216,7 +216,7 @@ class Filters extends React.Component {
               id="sofa"
               onChange={(e) => this.onCheckSofa(e)}
             />
-            <label className="form-check-label" for="sofa">
+            <label className="form-check-label" htmlFor="sofa">
               Canapea
             </label>
           </div>
@@ -228,7 +228,7 @@ class Filters extends React.Component {
               id="wardrobe"
               onChange={(e) => this.onCheckWardrobe(e)}
             />
-            <label className="form-check-label" for="wardrobe">
+            <label className="form-check-label" htmlFor="wardrobe">
               Dulap
             </label>
           </div>
@@ -240,7 +240,7 @@ class Filters extends React.Component {
               id="bed"
               onChange={(e) => this.onCheckBed(e)}
             />
-            <label className="form-check-label" for="bed">
+            <label className="form-check-label" htmlFor="bed">
               Pat
             </label>
           </div>
@@ -252,7 +252,7 @@ class Filters extends React.Component {
               id="table"
               onChange={(e) => this.onCheckTable(e)}
             />
-            <label className="form-check-label" for="table">
+            <label className="form-check-label" htmlFor="table">
               Masă
             </label>
           </div>
@@ -264,7 +264,7 @@ class Filters extends React.Component {
               id="chair"
               onChange={(e) => this.onCheckChair(e)}
             />
-            <label className="form-check-label" for="chair">
+            <label className="form-check-label" htmlFor="chair">
               Scaun
             </label>
           </div>
@@ -276,7 +276,7 @@ class Filters extends React.Component {
               id="fridge"
               onChange={(e) => this.onCheckFridge(e)}
             />
-            <label className="form-check-label" for="fridge">
+            <label className="form-check-label" htmlFor="fridge">
               Frigider
             </label>
           </div>
@@ -288,7 +288,7 @@ class Filters extends React.Component {
               id="mattress"
               onChange={(e) => this.onCheckMattress(e)}
             />
-            <label className="form-check-label" for="mattress">
+            <label className="form-check-label" htmlFor="mattress">
               Saltea
             </label>
           </div>
@@ -300,7 +300,7 @@ class Filters extends React.Component {
               id="armchair"
               onChange={(e) => this.onCheckArmchair(e)}
             />
-            <label className="form-check-label" for="armchair">
+            <label className="form-check-label" htmlFor="armchair">
               Fotoliu
             </label>
           </div>

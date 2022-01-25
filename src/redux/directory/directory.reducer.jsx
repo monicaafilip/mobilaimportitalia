@@ -14,21 +14,24 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       });
 
       let appliedFilters = state.appliedFilters;
-
       if (category) {
         newState.category = category;
         appliedFilters = addFilterIfNotExists(
           DirectoryTypes.FILTER_BY_CATEGORY,
           appliedFilters
         );
+        appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
 
-        newState.filteredProducts = filteredValues;
+        console.log(appliedFilters);
+        if (appliedFilters.length > 1) {
+          newState.filteredProducts = filterWithManyFilters(appliedFilters);
+        } else newState.filteredProducts = filteredValues;
+
         newState.filteredCount = newState.filteredProducts.length;
         newState.filteredPages = Math.ceil(
           newState.filteredCount / newState.countPerPage
         );
       } else {
-        newState.category = "";
         appliedFilters = removeFilter(
           DirectoryTypes.FILTER_BY_CATEGORY,
           appliedFilters
@@ -36,13 +39,13 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 
         if (appliedFilters.length === 0) {
           newState.filteredProducts = newState.products;
-          newState.filteredCount = newState.filteredProducts.length;
-          newState.filteredPages = Math.ceil(
-            newState.filteredCount / newState.countPerPage
-          );
         } else {
-          // TODOMF
+          newState.filteredProducts = filterWithManyFilters(appliedFilters);
         }
+        newState.filteredCount = newState.filteredProducts.length;
+        newState.filteredPages = Math.ceil(
+          newState.filteredCount / newState.countPerPage
+        );
       }
       newState.valuesPerPage = newState.filteredProducts.slice(
         0,
@@ -78,8 +81,13 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
           DirectoryTypes.FILTER_BY_PRICE,
           appliedFilters
         );
+        appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
 
-        newState.filteredProducts = filteredValues;
+        console.log(appliedFilters);
+        if (appliedFilters.length > 1) {
+          newState.filteredProducts = filterWithManyFilters(appliedFilters);
+        } else newState.filteredProducts = filteredValues;
+
         newState.filteredCount = newState.filteredProducts.length;
         newState.filteredPages = Math.ceil(
           newState.filteredCount / newState.countPerPage
@@ -90,23 +98,21 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
           appliedFilters
         );
 
-        newState.minPrice = 0;
-        newState.maxPrice = 10000;
-
         if (appliedFilters.length === 0) {
           newState.filteredProducts = newState.products;
-          newState.filteredCount = newState.filteredProducts.length;
-          newState.filteredPages = Math.ceil(
-            newState.filteredCount / newState.countPerPage
-          );
         } else {
-          // !!TODOMF
+          newState.filteredProducts = filterWithManyFilters(appliedFilters);
         }
+        newState.filteredCount = newState.filteredProducts.length;
+        newState.filteredPages = Math.ceil(
+          newState.filteredCount / newState.countPerPage
+        );
       }
       newState.valuesPerPage = newState.filteredProducts.slice(
         0,
         newState.countPerPage
       );
+      console.log(newState);
       return newState;
     }
     case DirectoryTypes.LOAD_DATA: {
@@ -199,10 +205,40 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 
 export default directoryReducer;
 
+function filterWithManyFilters(appliedFilters) {
+  if (appliedFilters.length === 1) return appliedFilters[0]["values"];
+
+  let index = 0;
+  let finalFilteredValues = [];
+  let filteredValues = appliedFilters[appliedFilters.length - 1]["values"];
+  while (index < appliedFilters.length - 1) {
+    let values = appliedFilters[index]["values"];
+
+    finalFilteredValues = filteredValues.filter(function (o1) {
+      return values.some(function (o2) {
+        if (o1["id"] === o2["id"]) {
+          console.log(o1);
+          console.log(o2);
+        }
+        return o1["id"] === o2["id"];
+      });
+    });
+    index = index + 1;
+  }
+  return finalFilteredValues;
+}
 function addFilterIfNotExists(filter, appliedFilters) {
   if (appliedFilters) {
-    let index = appliedFilters.indexOf(filter);
-    if (index === -1) appliedFilters.push(filter);
+    let index = -1;
+    for (let i = 0; i < appliedFilters.length; i++)
+      if (appliedFilters[i]["filter"] === filter) {
+        index = i;
+        break;
+      }
+    if (index === -1) {
+      const obj = { filter: filter, values: [] };
+      appliedFilters.push(obj);
+    }
   }
 
   return appliedFilters;
@@ -210,8 +246,14 @@ function addFilterIfNotExists(filter, appliedFilters) {
 
 function removeFilter(filter, appliedFilters) {
   if (appliedFilters) {
-    let index = appliedFilters.indexOf(filter);
+    let index = -1;
+    for (let i = 0; i < appliedFilters.length; i++)
+      if (appliedFilters[i]["filter"] === filter) {
+        index = i;
+        break;
+      }
     appliedFilters.splice(index, 1);
+    console.log(appliedFilters);
   }
   return appliedFilters;
 }

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import "./multiRangeSlider.scss";
 
-const MultiRangeSlider = ({ min, max, onChange, handleSubmit }) => {
+const MultiRangeSlider = ({ min, max, onChange }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
@@ -75,7 +75,6 @@ const MultiRangeSlider = ({ min, max, onChange, handleSubmit }) => {
             maxValRef.current = value;
           }}
           className="thumb thumb--right"
-          f
         />
 
         <div className="slider">
