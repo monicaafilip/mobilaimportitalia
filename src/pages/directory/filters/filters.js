@@ -205,6 +205,50 @@ class Filters extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
   };
+
+  componentDidMount() {
+    const kitchen = localStorage.getItem("kitchen");
+    const bathroom = localStorage.getItem("bathroom");
+    const sofa = localStorage.getItem("sofa");
+    const wardrobe = localStorage.getItem("wardrobe");
+    const bed = localStorage.getItem("bed");
+    const table = localStorage.getItem("table");
+    const chair = localStorage.getItem("chair");
+    const fridge = localStorage.getItem("fridge");
+    const mattress = localStorage.getItem("mattress");
+    const armchair = localStorage.getItem("armchair");
+    const danila = localStorage.getItem("danila");
+    const cajvana = localStorage.getItem("cajvana");
+
+    this.setState({ kitchen: kitchen === "true" ? true : false });
+    this.setState({ bathroom: bathroom === "true" ? true : false });
+    this.setState({ sofa: sofa === "true" ? true : false });
+    this.setState({ wardrobe: wardrobe === "true" ? true : false });
+    this.setState({ bed: bed === "true" ? true : false });
+    this.setState({ table: table === "true" ? true : false });
+    this.setState({ chair: chair === "true" ? true : false });
+    this.setState({ fridge: fridge === "true" ? true : false });
+    this.setState({ mattress: mattress === "true" ? true : false });
+    this.setState({ armchair: armchair === "true" ? true : false });
+    this.setState({ danila: danila === "true" ? true : false });
+    this.setState({ cajvana: cajvana === "true" ? true : false });
+  }
+
+  componentDidUpdate(nextProps, nextState) {
+    localStorage.setItem("kitchen", "" + this.state.kitchen);
+    localStorage.setItem("bathroom", "" + this.state.bathroom);
+    localStorage.setItem("sofa", "" + this.state.sofa);
+    localStorage.setItem("wardrobe", "" + this.state.wardrobe);
+    localStorage.setItem("bed", "" + this.state.bed);
+    localStorage.setItem("table", "" + this.state.table);
+    localStorage.setItem("chair", "" + this.state.chair);
+    localStorage.setItem("fridge", "" + this.state.fridge);
+    localStorage.setItem("mattress", "" + this.state.mattress);
+    localStorage.setItem("armchair", "" + this.state.armchair);
+    localStorage.setItem("danila", "" + this.state.danila);
+    localStorage.setItem("cajvana", "" + this.state.cajvana);
+  }
+
   render() {
     return (
       <div className="categorii">

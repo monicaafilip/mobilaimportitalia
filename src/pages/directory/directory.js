@@ -49,6 +49,16 @@ class Directory extends React.Component {
   }
   componentDidMount() {
     this.props.dispatch(loadData({ countPerPage: perPage }));
+
+    const minPrice = localStorage.getItem("minPrice");
+    const maxPrice = localStorage.getItem("maxPrice");
+
+    this.setState({ minPrice: minPrice === "true" ? true : false });
+    this.setState({ maxPrice: maxPrice === "true" ? true : false });
+  }
+  componentDidUpdate(nextProps, nextState) {
+    localStorage.setItem("minPrice", "" + this.state.minPrice);
+    localStorage.setItem("maxPrice", "" + this.state.maxPrice);
   }
   renderAll() {
     this.props.dispatch(filterByCategory({ category: null }));
