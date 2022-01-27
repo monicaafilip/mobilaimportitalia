@@ -53,10 +53,10 @@ class Directory extends React.Component {
     const minPrice = localStorage.getItem("minPrice");
     const maxPrice = localStorage.getItem("maxPrice");
 
-    this.setState({ minPrice: minPrice === "true" ? true : false });
-    this.setState({ maxPrice: maxPrice === "true" ? true : false });
+    this.setState({ minPrice: minPrice });
+    this.setState({ maxPrice: maxPrice });
   }
-  componentDidUpdate(nextProps, nextState) {
+  componentDidUpdate() {
     localStorage.setItem("minPrice", "" + this.state.minPrice);
     localStorage.setItem("maxPrice", "" + this.state.maxPrice);
   }
