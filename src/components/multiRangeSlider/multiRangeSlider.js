@@ -1,12 +1,14 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
+
+import { useLocalStorage } from "../../helpers/useLocalStorage";
+
 import "./multiRangeSlider.scss";
 
 const MultiRangeSlider = ({ min, max, onChange }) => {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
-  const minValRef = useRef(min);
-  const maxValRef = useRef(max);
+  const [minVal, setMinVal] = useLocalStorage("minVal", min);
+  const [maxVal, setMaxVal] = useLocalStorage("maxVal", max);
+
   const range = useRef(null);
 
   // Convert to percentage
@@ -18,23 +20,23 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
   // Set width of the range to decrease from the left side
   useEffect(() => {
     const minPercent = getPercent(minVal);
-    const maxPercent = getPercent(maxValRef.current);
+    const maxPercent = getPercent(maxVal);
 
     if (range.current) {
       range.current.style.left = `${minPercent}%`;
       range.current.style.width = `${maxPercent - minPercent}%`;
     }
-  }, [minVal, getPercent]);
+  }, [minVal, getPercent, maxVal]);
 
   // Set width of the range to decrease from the right side
   useEffect(() => {
-    const minPercent = getPercent(minValRef.current);
+    const minPercent = getPercent(minVal);
     const maxPercent = getPercent(maxVal);
 
     if (range.current) {
       range.current.style.width = `${maxPercent - minPercent}%`;
     }
-  }, [maxVal, getPercent]);
+  }, [maxVal, getPercent, minVal]);
 
   // Get min and max values when their state changes
   useEffect(() => {
@@ -58,7 +60,6 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
           onChange={(event) => {
             const value = Math.min(Number(event.target.value), maxVal - 1);
             setMinVal(value);
-            minValRef.current = value;
           }}
           className="thumb thumb--left"
           style={{ zIndex: minVal > max - 100 && "5" }}
@@ -72,7 +73,6 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
           onChange={(event) => {
             const value = Math.max(Number(event.target.value), minVal + 1);
             setMaxVal(value);
-            maxValRef.current = value;
           }}
           className="thumb thumb--right"
         />
