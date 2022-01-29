@@ -43,13 +43,16 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       };
 
       filteredValues = newState.products.filter(filterFunction);
-
+      let result = undefined;
       if (minValue !== 0 || maxValue !== 10000) {
-        appliedFilters = addFilterIfNotExists(
+        result = addFilterIfNotExists(
           DirectoryTypes.FILTER_BY_PRICE,
           appliedFilters
         );
-        appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+        appliedFilters = result.appliedFilters;
+        if (result.index === -1)
+          appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+        else appliedFilters[result.index]["values"] = filteredValues;
 
         if (appliedFilters.length > 1) {
           newState.filteredProducts = filterWithManyFilters(appliedFilters);
@@ -59,7 +62,7 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         newState.filteredPages = Math.ceil(
           newState.filteredCount / newState.countPerPage
         );
-      } else {
+      } else if (minValue === 0 && maxValue === 10000) {
         appliedFilters = removeFilter(
           DirectoryTypes.FILTER_BY_PRICE,
           appliedFilters
@@ -188,10 +191,13 @@ export default directoryReducer;
 
 function updateState(state, newState, filteredValues, payloadValue, type) {
   let appliedFilters = state.appliedFilters;
-
+  let result = undefined;
   if (payloadValue) {
-    appliedFilters = addFilterIfNotExists(type, appliedFilters);
-    appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+    result = addFilterIfNotExists(type, appliedFilters);
+    appliedFilters = result.appliedFilters;
+    if (result.index === -1)
+      appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+    else appliedFilters[result.index]["values"] = filteredValues;
 
     if (appliedFilters.length > 1) {
       newState.filteredProducts = filterWithManyFilters(appliedFilters);
@@ -239,8 +245,8 @@ function filterWithManyFilters(appliedFilters) {
   return finalFilteredValues;
 }
 function addFilterIfNotExists(filter, appliedFilters) {
+  let index = -1;
   if (appliedFilters) {
-    let index = -1;
     for (let i = 0; i < appliedFilters.length; i++)
       if (appliedFilters[i]["filter"] === filter) {
         index = i;
@@ -252,7 +258,7 @@ function addFilterIfNotExists(filter, appliedFilters) {
     }
   }
 
-  return appliedFilters;
+  return { appliedFilters, index };
 }
 
 function removeFilter(filter, appliedFilters) {
