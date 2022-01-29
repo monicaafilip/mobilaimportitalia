@@ -15,6 +15,11 @@ export const filterByLocation = (payload) => ({
   payload,
 });
 
+export const sales = (payload) => ({
+  type: DirectoryTypes.SALES,
+  payload,
+});
+
 export const loadData = (payload) => ({
   type: DirectoryTypes.LOAD_DATA,
   payload,

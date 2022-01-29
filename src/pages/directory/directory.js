@@ -14,6 +14,7 @@ import {
   filterByCategory,
   filterByPrice,
   filterByLocation,
+  sales,
 } from "../../redux/directory/directory.actions";
 
 import Filters from "./filters/filters";
@@ -46,6 +47,7 @@ class Directory extends React.Component {
     this.filterPrice = this.filterPrice.bind(this);
     this.filterLocation = this.filterLocation.bind(this);
     this.renderAll = this.renderAll.bind(this);
+    this.filterSales = this.filterSales.bind(this);
   }
   componentDidMount() {
     this.props.dispatch(loadData({ countPerPage: perPage }));
@@ -92,6 +94,9 @@ class Directory extends React.Component {
   filterLocation(loc) {
     this.props.dispatch(filterByLocation({ location: loc }));
   }
+  filterSales(sale) {
+    this.props.dispatch(sales({ sales: sale }));
+  }
 
   nextPage() {
     this.props.dispatch(loadNewPage({ page: 1 }));
@@ -119,6 +124,7 @@ class Directory extends React.Component {
               renderAll={this.renderAll}
               filterByPrice={this.filterPrice}
               filterLocation={this.filterLocation}
+              sales={this.filterSales}
             />
 
             <ResponsiveMasonry

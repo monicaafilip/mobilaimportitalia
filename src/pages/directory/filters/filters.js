@@ -17,6 +17,7 @@ class Filters extends React.Component {
     armchair: false,
     danila: false,
     cajvana: false,
+    sales: false,
   };
   onCheckKitchen = (event) => {
     this.setState(() => ({
@@ -202,6 +203,17 @@ class Filters extends React.Component {
     }
   };
 
+  onSales = (event) => {
+    this.setState(() => ({
+      sales: !this.state.sales,
+    }));
+    if (event.target.checked) {
+      this.props.sales("reduceri");
+    } else {
+      this.props.sales(null);
+    }
+  };
+
   onSubmit = (e) => {
     e.preventDefault();
   };
@@ -219,6 +231,7 @@ class Filters extends React.Component {
     const armchair = localStorage.getItem("armchair");
     const danila = localStorage.getItem("danila");
     const cajvana = localStorage.getItem("cajvana");
+    const sales = localStorage.getItem("sales");
 
     this.setState({ kitchen: kitchen === "true" ? true : false });
     this.setState({ bathroom: bathroom === "true" ? true : false });
@@ -232,6 +245,7 @@ class Filters extends React.Component {
     this.setState({ armchair: armchair === "true" ? true : false });
     this.setState({ danila: danila === "true" ? true : false });
     this.setState({ cajvana: cajvana === "true" ? true : false });
+    this.setState({ sales: sales === "true" ? true : false });
   }
 
   componentDidUpdate(nextProps, nextState) {
@@ -247,6 +261,7 @@ class Filters extends React.Component {
     localStorage.setItem("armchair", "" + this.state.armchair);
     localStorage.setItem("danila", "" + this.state.danila);
     localStorage.setItem("cajvana", "" + this.state.cajvana);
+    localStorage.setItem("sales", "" + this.state.sales);
   }
 
   render() {
@@ -374,6 +389,20 @@ class Filters extends React.Component {
             </label>
           </div>
         </form>
+        <br />
+        <div className="form-check">
+          <input
+            checked={this.state.sales}
+            type="checkbox"
+            className="form-check-input"
+            id="sales"
+            onChange={(e) => this.onSales(e)}
+          />
+          <label className="form-check-label" htmlFor="sales">
+            Reduceri
+          </label>
+        </div>
+        <br />
         <MultiRangeSlider
           min={0}
           max={10000}
