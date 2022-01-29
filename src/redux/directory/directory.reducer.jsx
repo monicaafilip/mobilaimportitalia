@@ -28,6 +28,7 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 
       let appliedFilters = state.appliedFilters;
 
+      console.log(state);
       let filteredValues = [];
       let filterFunction = (product) => {
         if (product.price === product.sales) {
@@ -50,6 +51,9 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
           appliedFilters
         );
         appliedFilters = result.appliedFilters;
+
+        if (!appliedFilters) return newState;
+
         if (result.index === -1)
           appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
         else appliedFilters[result.index]["values"] = filteredValues;
@@ -57,6 +61,8 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         if (appliedFilters.length > 1) {
           newState.filteredProducts = filterWithManyFilters(appliedFilters);
         } else newState.filteredProducts = filteredValues;
+
+        if (!newState.filteredProducts) return newState;
 
         newState.filteredCount = newState.filteredProducts.length;
         newState.filteredPages = Math.ceil(
@@ -195,6 +201,9 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
   if (payloadValue) {
     result = addFilterIfNotExists(type, appliedFilters);
     appliedFilters = result.appliedFilters;
+
+    if (!appliedFilters) return newState;
+
     if (result.index === -1)
       appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
     else appliedFilters[result.index]["values"] = filteredValues;
@@ -202,6 +211,8 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
     if (appliedFilters.length > 1) {
       newState.filteredProducts = filterWithManyFilters(appliedFilters);
     } else newState.filteredProducts = filteredValues;
+
+    if (!newState.filteredProducts) return newState;
 
     newState.filteredCount = newState.filteredProducts.length;
     newState.filteredPages = Math.ceil(
@@ -228,6 +239,8 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
 }
 
 function filterWithManyFilters(appliedFilters) {
+  if (!appliedFilters) return [];
+
   if (appliedFilters.length === 1) return appliedFilters[0]["values"];
 
   let index = 0;
