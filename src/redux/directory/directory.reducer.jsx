@@ -116,7 +116,7 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         newState,
         filteredValues,
         sales,
-        DirectoryTypes.FILTER_BY_LOCATION
+        DirectoryTypes.SALES
       );
     }
     case DirectoryTypes.LOAD_DATA: {
