@@ -210,7 +210,7 @@ class Filters extends React.Component {
     if (event.target.checked) {
       this.props.sales("reduceri");
     } else {
-      this.props.sales(null);
+      this.props.sales(undefined);
     }
   };
 
@@ -407,7 +407,8 @@ class Filters extends React.Component {
           min={0}
           max={10000}
           onChange={({ min, max }) => this.props.filterByPrice(min, max)}
-        />
+        />{" "}
+        <br />
         <div className="location">
           <div className="form-check">
             <input
