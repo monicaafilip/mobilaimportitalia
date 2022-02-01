@@ -1,5 +1,5 @@
 import React from "react";
-// import MultiRangeSlider from "../../../components/multiRangeSlider/multiRangeSlider";
+import MultiRangeSlider from "../../../components/multiRangeSlider/multiRangeSlider";
 
 import "./filters.scss";
 
@@ -403,11 +403,11 @@ class Filters extends React.Component {
           </label>
         </div>
         <br />
-        {/* <MultiRangeSlider
+        <MultiRangeSlider
           min={0}
           max={10000}
           onChange={({ min, max }) => this.props.filterByPrice(min, max)}
-        /> */}{" "}
+        />
         <br />
         <div className="location">
           <div className="form-check">
