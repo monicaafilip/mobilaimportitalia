@@ -235,6 +235,8 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
   } else {
     appliedFilters = removeFilter(type, appliedFilters);
 
+    if (!appliedFilters) return newState;
+
     if (appliedFilters.length === 0) {
       newState.filteredProducts = newState.products;
     } else {
