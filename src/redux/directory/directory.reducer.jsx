@@ -216,6 +216,7 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
     result = addFilterIfNotExists(type, appliedFilters);
     appliedFilters = result.appliedFilters;
 
+    console.log(appliedFilters);
     if (!appliedFilters) return newState;
 
     if (result.index === -1)
@@ -226,6 +227,7 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
       newState.filteredProducts = filterWithManyFilters(appliedFilters);
     } else newState.filteredProducts = filteredValues;
 
+    console.log(newState.filteredProducts);
     if (!newState.filteredProducts) return newState;
 
     newState.filteredCount = newState.filteredProducts.length;
@@ -235,6 +237,7 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
   } else {
     appliedFilters = removeFilter(type, appliedFilters);
 
+    console.log(appliedFilters);
     if (!appliedFilters) return newState;
 
     if (appliedFilters.length === 0) {
