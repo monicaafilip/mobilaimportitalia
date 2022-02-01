@@ -13,6 +13,8 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         return product.filter.toLowerCase().includes(category);
       });
 
+      console.log(newState);
+      console.log(filteredValues);
       return updateState(
         state,
         newState,
