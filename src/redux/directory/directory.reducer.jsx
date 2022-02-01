@@ -278,6 +278,7 @@ function filterWithManyFilters(appliedFilters) {
 }
 function addFilterIfNotExists(filter, appliedFilters) {
   let index = -1;
+  console.log(appliedFilters);
   if (appliedFilters) {
     for (let i = 0; i < appliedFilters.length; i++)
       if (appliedFilters[i]["filter"] === filter) {
@@ -289,7 +290,8 @@ function addFilterIfNotExists(filter, appliedFilters) {
       appliedFilters.push(obj);
     }
   }
-
+  console.log(appliedFilters);
+  console.log(index);
   return { appliedFilters, index };
 }
 
