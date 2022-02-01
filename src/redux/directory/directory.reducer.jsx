@@ -14,6 +14,7 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       });
 
       console.log(filteredValues);
+      console.log(state.appliedFilters);
       return updateState(
         state,
         newState,
