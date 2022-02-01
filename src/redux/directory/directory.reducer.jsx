@@ -13,7 +13,6 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         return product.filter.toLowerCase().includes(category);
       });
 
-      console.log(newState);
       console.log(filteredValues);
       return updateState(
         state,
@@ -214,6 +213,7 @@ export default directoryReducer;
 function updateState(state, newState, filteredValues, payloadValue, type) {
   let appliedFilters = state.appliedFilters;
   let result = undefined;
+  console.log(appliedFilters);
   if (payloadValue) {
     result = addFilterIfNotExists(type, appliedFilters);
     appliedFilters = result.appliedFilters;
