@@ -125,6 +125,7 @@ class Directory extends React.Component {
               renderAll={this.renderAll}
               filterByPrice={this.filterPrice}
               filterLocation={this.filterLocation}
+              filterSale={this.filterSale}
             />
 
             <ResponsiveMasonry

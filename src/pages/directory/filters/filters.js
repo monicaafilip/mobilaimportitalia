@@ -1,5 +1,5 @@
 import React from "react";
-// import MultiRangeSlider from "../../../components/multiRangeSlider/multiRangeSlider";
+import MultiRangeSlider from "../../../components/multirangeSlider/multirangeSlider";
 
 import "./filters.scss";
 
@@ -387,7 +387,7 @@ class Filters extends React.Component {
           </div>
         </form>
         <br />
-        {/* <div className="form-check">
+        <div className="form-check">
           <input
             checked={this.state.sales}
             type="checkbox"
@@ -398,13 +398,13 @@ class Filters extends React.Component {
           <label className="form-check-label" htmlFor="sales">
             Reduceri
           </label>
-        </div> */}
-        {/* <MultiRangeSlider
+        </div>
+        <MultiRangeSlider
           min={0}
           max={10000}
           onChange={({ min, max }) => this.props.filterByPrice(min, max)}
-        /> */}
-        {/* <div className="location">
+        />
+        <div className="location">
           <div className="form-check">
             <input
               checked={this.state.cajvana}
@@ -429,7 +429,7 @@ class Filters extends React.Component {
               Dănila
             </label>
           </div>
-        </div> */}
+        </div>
       </div>
     );
   }
