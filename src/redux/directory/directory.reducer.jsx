@@ -7,6 +7,7 @@ const INITIAL_STATE = {
 const directoryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case DirectoryTypes.FILTER_BY_CATEGORY: {
+      console.log(state);
       let newState = Object.assign({}, state);
       let category = action.payload.category;
       let filteredValues = state.products.filter((product) => {
