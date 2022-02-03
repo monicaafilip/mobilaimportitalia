@@ -126,7 +126,7 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
       appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
     else appliedFilters[result.index]["values"] = filteredValues;
 
-    // appliedFilters = addFilterIfNotExists(type, appliedFilters);
+    console.log(filteredValues);
 
     newState.appliedFilters = appliedFilters;
     newState.filteredProducts = filteredValues;
