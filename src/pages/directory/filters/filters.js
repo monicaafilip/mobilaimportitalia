@@ -17,6 +17,7 @@ class Filters extends React.Component {
     armchair: false,
     danila: false,
     cajvana: false,
+    sales: false,
   };
   onCheckKitchen = (event) => {
     this.setState(() => ({
@@ -202,6 +203,17 @@ class Filters extends React.Component {
     }
   };
 
+  onSales = (event) => {
+    this.setState(() => ({
+      sales: !this.state.sales,
+    }));
+    if (event.target.checked) {
+      this.props.filterSale("sales");
+    } else {
+      this.props.filterSale(null);
+    }
+  };
+
   onSubmit = (e) => {
     e.preventDefault();
   };
@@ -374,6 +386,19 @@ class Filters extends React.Component {
             </label>
           </div>
         </form>
+        <br />
+        <div className="form-check">
+          <input
+            checked={this.state.sales}
+            type="checkbox"
+            className="form-check-input"
+            id="sales"
+            onChange={(e) => this.onSales(e)}
+          />
+          <label className="form-check-label" htmlFor="sales">
+            Reduceri
+          </label>
+        </div>
         <MultiRangeSlider
           min={0}
           max={10000}

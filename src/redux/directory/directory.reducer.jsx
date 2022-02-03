@@ -28,7 +28,6 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 
       let appliedFilters = state.appliedFilters;
 
-      console.log(state);
       let filteredValues = [];
       let filterFunction = (product) => {
         if (product.price === product.sales) {
@@ -103,6 +102,21 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         filteredValues,
         location,
         DirectoryTypes.FILTER_BY_LOCATION
+      );
+    }
+    case DirectoryTypes.FILTER_SALES: {
+      let newState = Object.assign({}, state);
+      let sales = action.payload.sales;
+      let filteredValues = state.products.filter((product) => {
+        return product.filter.toLowerCase().includes("reduceri");
+      });
+
+      return updateState(
+        state,
+        newState,
+        filteredValues,
+        sales,
+        DirectoryTypes.FILTER_SALES
       );
     }
     case DirectoryTypes.LOAD_DATA: {
