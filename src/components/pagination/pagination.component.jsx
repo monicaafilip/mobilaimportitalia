@@ -54,6 +54,7 @@ const Pagination = ({
   return (
     <ul className="pagination-container">
       <li
+        key="previous"
         className={`pagination-item ${currentPage === 1 ? "disabled" : ""}`}
         onClick={() => previousPage()}
       >
@@ -61,11 +62,16 @@ const Pagination = ({
       </li>
       {paginationRange(currentPage, lastPage)?.map((pageNumber) => {
         if (pageNumber === DOTS) {
-          return <li className="pagination-item dots">&#8230;</li>;
+          return (
+            <li key={pageNumber} className="pagination-item dots">
+              &#8230;
+            </li>
+          );
         }
 
         return (
           <li
+            key={pageNumber}
             className={`pagination-item ${
               pageNumber === currentPage ? "selected" : ""
             }`}
@@ -76,6 +82,7 @@ const Pagination = ({
         );
       })}
       <li
+        key="next"
         className={`pagination-item ${
           currentPage === lastPage ? "disabled" : ""
         }`}
