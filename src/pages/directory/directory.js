@@ -12,9 +12,12 @@ import {
   loadNewPage,
   loadExactPage,
   filterByCategory,
+  filterByPrice,
+  filterByLocation,
+  filterSales,
 } from "../../redux/directory/directory.actions";
 
-import Filters from "./filters";
+import Filters from "./filters/filters";
 import Pagination from "../../components/pagination/pagination.component";
 
 import "./directory.scss";
@@ -27,6 +30,10 @@ class Directory extends React.Component {
     super(props);
     const pathname = props.match.path;
 
+    this.state = {
+      minPrice: 0,
+      maxPrice: 10000,
+    };
     let pageView;
     if (pathname === "*") pageView = "/not-found";
     else pageView = pathname;
@@ -37,17 +44,59 @@ class Directory extends React.Component {
     this.previousPage = this.previousPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.filter = this.filter.bind(this);
+    this.filterPrice = this.filterPrice.bind(this);
+    this.filterLocation = this.filterLocation.bind(this);
+    this.filterSale = this.filterSale.bind(this);
     this.renderAll = this.renderAll.bind(this);
   }
   componentDidMount() {
     this.props.dispatch(loadData({ countPerPage: perPage }));
-  }
 
+    const minPrice = localStorage.getItem("minPrice");
+    const maxPrice = localStorage.getItem("maxPrice");
+
+    this.setState({ minPrice: minPrice });
+    this.setState({ maxPrice: maxPrice });
+  }
+  componentDidUpdate() {
+    localStorage.setItem("minPrice", "" + this.state.minPrice);
+    localStorage.setItem("maxPrice", "" + this.state.maxPrice);
+  }
   renderAll() {
-    this.props.dispatch(loadData({ countPerPage: perPage }));
+    this.props.dispatch(filterByCategory({ category: null }));
   }
   filter(cat) {
     this.props.dispatch(filterByCategory({ category: cat }));
+  }
+  filterPrice(min, max) {
+    if (min === 0 && max === 10000) {
+      if (min !== this.state.minPrice && max !== this.state.maxPrice)
+        this.props.dispatch(
+          filterByPrice({
+            minValue: undefined,
+            maxValue: undefined,
+          })
+        );
+    }
+    if (min !== this.state.minPrice || max !== this.state.maxPrice) {
+      this.setState(() => ({
+        minPrice: min,
+        maxPrice: max,
+      }));
+      this.props.dispatch(
+        filterByPrice({
+          minValue: min,
+          maxValue: max,
+        })
+      );
+    }
+  }
+  filterLocation(loc) {
+    this.props.dispatch(filterByLocation({ location: loc }));
+  }
+
+  filterSale(sale) {
+    this.props.dispatch(filterSales({ sales: sale }));
   }
 
   nextPage() {
@@ -69,17 +118,26 @@ class Directory extends React.Component {
       <div className="App">
         <div className="container-fluid mainHomePage">
           <MyNavbar />
-          <Filters filter={this.filter} renderAll={this.renderAll} />
-          <ResponsiveMasonry
-            columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-          >
-            <Masonry>
-              {products?.map(({ id, ...otherProps }) => (
-                <Product key={id} {...otherProps} />
-              ))}
-            </Masonry>
-          </ResponsiveMasonry>
+          <div className="content">
+            <Filters
+              className="filters"
+              filter={this.filter}
+              renderAll={this.renderAll}
+              filterByPrice={this.filterPrice}
+              filterLocation={this.filterLocation}
+            />
 
+            <ResponsiveMasonry
+              className="products"
+              columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+            >
+              <Masonry>
+                {products?.map(({ id, ...otherProps }) => (
+                  <Product key={id} {...otherProps} />
+                ))}
+              </Masonry>
+            </ResponsiveMasonry>
+          </div>
           <Pagination
             currentPage={currentPage}
             lastPage={filteredPages}
