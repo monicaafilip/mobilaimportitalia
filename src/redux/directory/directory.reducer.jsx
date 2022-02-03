@@ -16,19 +16,21 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 
       let appliedFilters = state.appliedFilters;
       console.log(appliedFilters);
+      let index = -1;
       if (category) {
-        let result = addFilterIfNotExists(
+        appliedFilters = addFilterIfNotExists(
           DirectoryTypes.FILTER_BY_CATEGORY,
-          appliedFilters
+          appliedFilters,
+          index
         );
-        appliedFilters = result.appliedFilters;
 
         console.log(appliedFilters);
+        console.log(index);
         if (!appliedFilters) return newState;
 
-        if (result.index === -1)
+        if (index === -1)
           appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
-        else appliedFilters[result.index]["values"] = filteredValues;
+        else appliedFilters[index]["values"] = filteredValues;
 
         console.log(filteredValues);
 
@@ -230,8 +232,8 @@ export default directoryReducer;
 //   // return newState;
 // }
 
-function addFilterIfNotExists(filter, appliedFilters) {
-  let index = -1;
+function addFilterIfNotExists(filter, appliedFilters, index) {
+  // appliedFilters = [];
   console.log(appliedFilters);
   if (appliedFilters) {
     for (let i = 0; i < appliedFilters.length; i++)
@@ -240,12 +242,13 @@ function addFilterIfNotExists(filter, appliedFilters) {
         break;
       }
     if (index === -1) {
+      console.log("here");
       const obj = { filter: filter, values: [] };
       appliedFilters.push(obj);
     }
   }
   console.log(appliedFilters);
-  return { appliedFilters, index };
+  return appliedFilters;
 }
 
 function removeFilter(filter, appliedFilters) {
