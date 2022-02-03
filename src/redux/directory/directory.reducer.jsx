@@ -116,6 +116,7 @@ export default directoryReducer;
 function updateState(state, newState, filteredValues, payloadValue, type) {
   let appliedFilters = state.appliedFilters;
 
+  console.log(newState.appliedFilters);
   console.log(appliedFilters);
   if (payloadValue) {
     let result = addFilterIfNotExists(type, appliedFilters);
