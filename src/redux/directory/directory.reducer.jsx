@@ -15,6 +15,7 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       });
 
       let appliedFilters = state.appliedFilters;
+      console.log(appliedFilters);
       if (category) {
         let result = addFilterIfNotExists(
           DirectoryTypes.FILTER_BY_CATEGORY,
@@ -231,6 +232,7 @@ export default directoryReducer;
 
 function addFilterIfNotExists(filter, appliedFilters) {
   let index = -1;
+  console.log(appliedFilters);
   if (appliedFilters) {
     for (let i = 0; i < appliedFilters.length; i++)
       if (appliedFilters[i]["filter"] === filter) {
@@ -242,7 +244,7 @@ function addFilterIfNotExists(filter, appliedFilters) {
       appliedFilters.push(obj);
     }
   }
-
+  console.log(appliedFilters);
   return { appliedFilters, index };
 }
 
