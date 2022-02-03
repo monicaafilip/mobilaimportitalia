@@ -127,6 +127,7 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
 
     // appliedFilters = addFilterIfNotExists(type, appliedFilters);
 
+    newState.appliedFilters = appliedFilters;
     newState.filteredProducts = filteredValues;
     newState.valuesPerPage = newState.filteredProducts.slice(
       0,
