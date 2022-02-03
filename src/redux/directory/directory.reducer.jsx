@@ -59,9 +59,10 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         else appliedFilters[index]["values"] = filteredValues;
 
         if (appliedFilters.length > 1) {
-          filterWithManyFilters(appliedFilters, newState.filteredProducts);
+          newState.filteredProducts = filterWithManyFilters(appliedFilters);
         } else newState.filteredProducts = filteredValues;
 
+        console.log(newState.filteredProducts);
         if (!newState.filteredProducts) return newState;
 
         newState.filteredCount = newState.filteredProducts.length;
@@ -77,7 +78,7 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         if (appliedFilters.length === 0) {
           newState.filteredProducts = newState.products;
         } else {
-          filterWithManyFilters(appliedFilters, newState.filteredProducts);
+          newState.filteredProducts = filterWithManyFilters(appliedFilters);
         }
         newState.filteredCount = newState.filteredProducts.length;
         newState.filteredPages = Math.ceil(
@@ -228,7 +229,7 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
     newState.appliedFilters = appliedFilters;
 
     if (appliedFilters.length > 1) {
-      filterWithManyFilters(appliedFilters, newState.filteredProducts);
+      newState.filteredProducts = filterWithManyFilters(appliedFilters);
     } else newState.filteredProducts = filteredValues;
 
     if (!newState.filteredProducts) return newState;
@@ -243,7 +244,7 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
     if (appliedFilters.length === 0) {
       newState.filteredProducts = newState.products;
     } else {
-      filterWithManyFilters(appliedFilters, newState.filteredProducts);
+      newState.filteredProducts = filterWithManyFilters(appliedFilters);
     }
     newState.filteredCount = newState.filteredProducts.length;
     newState.filteredPages = Math.ceil(
@@ -257,13 +258,13 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
   return newState;
 }
 
-function filterWithManyFilters(appliedFilters, finalFilteredValues) {
+function filterWithManyFilters(appliedFilters) {
   if (!appliedFilters) return [];
 
   if (appliedFilters.length === 1) return appliedFilters[0]["values"];
 
   let index = 0;
-  finalFilteredValues = appliedFilters[appliedFilters.length - 1]["values"];
+  let finalFilteredValues = appliedFilters[appliedFilters.length - 1]["values"];
   console.log(finalFilteredValues);
   while (index < appliedFilters.length - 1) {
     let values = appliedFilters[index]["values"];
@@ -276,6 +277,7 @@ function filterWithManyFilters(appliedFilters, finalFilteredValues) {
     console.log(finalFilteredValues);
     index = index + 1;
   }
+  return finalFilteredValues;
 }
 
 function addFilterIfNotExists(filter, appliedFilters, index) {
