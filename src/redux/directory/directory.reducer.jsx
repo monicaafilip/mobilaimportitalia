@@ -14,51 +14,58 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         return product.filter.toLowerCase().includes(category);
       });
 
-      let appliedFilters = state.appliedFilters;
-      console.log(appliedFilters);
-      let index = -1;
-      if (category) {
-        appliedFilters = addFilterIfNotExists(
-          DirectoryTypes.FILTER_BY_CATEGORY,
-          appliedFilters,
-          index
-        );
+      return updateState(
+        state,
+        newState,
+        filteredValues,
+        category,
+        DirectoryTypes.FILTER_BY_CATEGORY
+      );
+      // let appliedFilters = state.appliedFilters;
+      // console.log(appliedFilters);
+      // let index = -1;
+      // if (category) {
+      //   appliedFilters = addFilterIfNotExists(
+      //     DirectoryTypes.FILTER_BY_CATEGORY,
+      //     appliedFilters,
+      //     index
+      //   );
 
-        console.log(appliedFilters);
-        console.log(index);
-        if (!appliedFilters) return newState;
+      //   console.log(appliedFilters);
+      //   console.log(index);
+      //   if (!appliedFilters) return newState;
 
-        if (index === -1)
-          appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
-        else appliedFilters[index]["values"] = filteredValues;
+      //   if (index === -1)
+      //     appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+      //   else appliedFilters[index]["values"] = filteredValues;
 
-        console.log(filteredValues);
+      //   console.log(filteredValues);
 
-        newState.appliedFilters = appliedFilters;
-        newState.filteredProducts = filteredValues;
-        newState.valuesPerPage = newState.filteredProducts.slice(
-          0,
-          newState.countPerPage
-        );
-        newState.filteredCount = newState.filteredProducts.length;
-        newState.filteredPages = Math.ceil(
-          newState.filteredCount / newState.countPerPage
-        );
-      } else {
-        appliedFilters = removeFilter(
-          DirectoryTypes.FILTER_BY_CATEGORY,
-          appliedFilters
-        );
+      //   newState.appliedFilters = appliedFilters;
+      //   newState.filteredProducts = filteredValues;
+      //   newState.valuesPerPage = newState.filteredProducts.slice(
+      //     0,
+      //     newState.countPerPage
+      //   );
+      //   newState.filteredCount = newState.filteredProducts.length;
+      //   newState.filteredPages = Math.ceil(
+      //     newState.filteredCount / newState.countPerPage
+      //   );
+      // } else {
+      //   appliedFilters = removeFilter(
+      //     DirectoryTypes.FILTER_BY_CATEGORY,
+      //     appliedFilters
+      //   );
 
-        if (appliedFilters.length === 0) {
-          newState.filteredProducts = newState.products;
-          newState.filteredCount = newState.filteredProducts.length;
-          newState.filteredPages = Math.ceil(
-            newState.filteredCount / newState.countPerPage
-          );
-        }
-      }
-      return newState;
+      //   if (appliedFilters.length === 0) {
+      //     newState.filteredProducts = newState.products;
+      //     newState.filteredCount = newState.filteredProducts.length;
+      //     newState.filteredPages = Math.ceil(
+      //       newState.filteredCount / newState.countPerPage
+      //     );
+      //   }
+      // }
+      // return newState;
     }
     case DirectoryTypes.LOAD_DATA: {
       let products = data;
@@ -150,87 +157,87 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 
 export default directoryReducer;
 
-// function updateState(state, newState, filteredValues, payloadValue, type) {
-//   let appliedFilters = state.appliedFilters;
+function updateState(state, newState, filteredValues, payloadValue, type) {
+  let appliedFilters = state.appliedFilters;
 
-//   console.log(newState.appliedFilters);
-//   console.log(appliedFilters);
-//   if (payloadValue) {
-//     let result = addFilterIfNotExists(type, appliedFilters);
-//     appliedFilters = result.appliedFilters;
+  console.log(newState.appliedFilters);
+  console.log(appliedFilters);
+  if (payloadValue) {
+    let index = -1;
+    appliedFilters = addFilterIfNotExists(type, appliedFilters, index);
 
-//     console.log(appliedFilters);
-//     if (!appliedFilters) return newState;
+    console.log(appliedFilters);
+    if (!appliedFilters) return newState;
 
-//     if (result.index === -1)
-//       appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
-//     else appliedFilters[result.index]["values"] = filteredValues;
+    if (index === -1)
+      appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+    else appliedFilters[index]["values"] = filteredValues;
 
-//     console.log(filteredValues);
+    console.log(filteredValues);
 
-//     newState.appliedFilters = appliedFilters;
-//     newState.filteredProducts = filteredValues;
-//     newState.valuesPerPage = newState.filteredProducts.slice(
-//       0,
-//       newState.countPerPage
-//     );
-//     newState.filteredCount = newState.filteredProducts.length;
-//     newState.filteredPages = Math.ceil(
-//       newState.filteredCount / newState.countPerPage
-//     );
-//   } else {
-//     appliedFilters = removeFilter(type, appliedFilters);
+    newState.appliedFilters = appliedFilters;
+    newState.filteredProducts = filteredValues;
+    newState.valuesPerPage = newState.filteredProducts.slice(
+      0,
+      newState.countPerPage
+    );
+    newState.filteredCount = newState.filteredProducts.length;
+    newState.filteredPages = Math.ceil(
+      newState.filteredCount / newState.countPerPage
+    );
+  } else {
+    appliedFilters = removeFilter(type, appliedFilters);
 
-//     if (appliedFilters.length === 0) {
-//       newState.filteredProducts = newState.products;
-//       newState.filteredCount = newState.filteredProducts.length;
-//       newState.filteredPages = Math.ceil(
-//         newState.filteredCount / newState.countPerPage
-//       );
-//     }
-//   }
-//   return newState;
-//   // let appliedFilters = state.appliedFilters;
-//   // let result = undefined;
-//   // if (payloadValue) {
-//   //   result = addFilterIfNotExists(type, appliedFilters);
-//   //   appliedFilters = result.appliedFilters;
+    if (appliedFilters.length === 0) {
+      newState.filteredProducts = newState.products;
+      newState.filteredCount = newState.filteredProducts.length;
+      newState.filteredPages = Math.ceil(
+        newState.filteredCount / newState.countPerPage
+      );
+    }
+  }
+  return newState;
+  // let appliedFilters = state.appliedFilters;
+  // let result = undefined;
+  // if (payloadValue) {
+  //   result = addFilterIfNotExists(type, appliedFilters);
+  //   appliedFilters = result.appliedFilters;
 
-//   //   if (!appliedFilters) return newState;
+  //   if (!appliedFilters) return newState;
 
-//   //   if (result.index === -1)
-//   //     appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
-//   //   else appliedFilters[result.index]["values"] = filteredValues;
+  //   if (result.index === -1)
+  //     appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+  //   else appliedFilters[result.index]["values"] = filteredValues;
 
-//   //   if (appliedFilters.length > 1) {
-//   //     newState.filteredProducts = filterWithManyFilters(appliedFilters);
-//   //   } else newState.filteredProducts = filteredValues;
+  //   if (appliedFilters.length > 1) {
+  //     newState.filteredProducts = filterWithManyFilters(appliedFilters);
+  //   } else newState.filteredProducts = filteredValues;
 
-//   //   if (!newState.filteredProducts) return newState;
+  //   if (!newState.filteredProducts) return newState;
 
-//   //   newState.filteredCount = newState.filteredProducts.length;
-//   //   newState.filteredPages = Math.ceil(
-//   //     newState.filteredCount / newState.countPerPage
-//   //   );
-//   // } else {
-//   //   appliedFilters = removeFilter(type, appliedFilters);
+  //   newState.filteredCount = newState.filteredProducts.length;
+  //   newState.filteredPages = Math.ceil(
+  //     newState.filteredCount / newState.countPerPage
+  //   );
+  // } else {
+  //   appliedFilters = removeFilter(type, appliedFilters);
 
-//   //   if (appliedFilters.length === 0) {
-//   //     newState.filteredProducts = newState.products;
-//   //   } else {
-//   //     newState.filteredProducts = filterWithManyFilters(appliedFilters);
-//   //   }
-//   //   newState.filteredCount = newState.filteredProducts.length;
-//   //   newState.filteredPages = Math.ceil(
-//   //     newState.filteredCount / newState.countPerPage
-//   //   );
-//   // }
-//   // newState.valuesPerPage = newState.filteredProducts.slice(
-//   //   0,
-//   //   newState.countPerPage
-//   // );
-//   // return newState;
-// }
+  //   if (appliedFilters.length === 0) {
+  //     newState.filteredProducts = newState.products;
+  //   } else {
+  //     newState.filteredProducts = filterWithManyFilters(appliedFilters);
+  //   }
+  //   newState.filteredCount = newState.filteredProducts.length;
+  //   newState.filteredPages = Math.ceil(
+  //     newState.filteredCount / newState.countPerPage
+  //   );
+  // }
+  // newState.valuesPerPage = newState.filteredProducts.slice(
+  //   0,
+  //   newState.countPerPage
+  // );
+  // return newState;
+}
 
 function addFilterIfNotExists(filter, appliedFilters, index) {
   // appliedFilters = [];
