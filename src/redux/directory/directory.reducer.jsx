@@ -120,6 +120,7 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
     let result = addFilterIfNotExists(type, appliedFilters);
     appliedFilters = result.appliedFilters;
 
+    console.log(appliedFilters);
     if (!appliedFilters) return newState;
 
     if (result.index === -1)
