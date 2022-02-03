@@ -173,14 +173,14 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
       appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
     else appliedFilters[index]["values"] = filteredValues;
 
-    console.log(filteredValues);
-
     newState.appliedFilters = appliedFilters;
-    newState.filteredProducts = filteredValues;
-    newState.valuesPerPage = newState.filteredProducts.slice(
-      0,
-      newState.countPerPage
-    );
+
+    if (appliedFilters.length > 1) {
+      filterWithManyFilters(appliedFilters, newState.filteredValues);
+    } else newState.filteredProducts = filteredValues;
+
+    if (!newState.filteredProducts) return newState;
+
     newState.filteredCount = newState.filteredProducts.length;
     newState.filteredPages = Math.ceil(
       newState.filteredCount / newState.countPerPage
@@ -190,53 +190,38 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
 
     if (appliedFilters.length === 0) {
       newState.filteredProducts = newState.products;
-      newState.filteredCount = newState.filteredProducts.length;
-      newState.filteredPages = Math.ceil(
-        newState.filteredCount / newState.countPerPage
-      );
+    } else {
+      filterWithManyFilters(appliedFilters, newState.filteredProducts);
     }
+    newState.filteredCount = newState.filteredProducts.length;
+    newState.filteredPages = Math.ceil(
+      newState.filteredCount / newState.countPerPage
+    );
   }
+  newState.valuesPerPage = newState.filteredProducts.slice(
+    0,
+    newState.countPerPage
+  );
   return newState;
-  // let appliedFilters = state.appliedFilters;
-  // let result = undefined;
-  // if (payloadValue) {
-  //   result = addFilterIfNotExists(type, appliedFilters);
-  //   appliedFilters = result.appliedFilters;
+}
 
-  //   if (!appliedFilters) return newState;
+function filterWithManyFilters(appliedFilters, finalFilteredValues) {
+  if (!appliedFilters) return [];
 
-  //   if (result.index === -1)
-  //     appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
-  //   else appliedFilters[result.index]["values"] = filteredValues;
+  if (appliedFilters.length === 1) return appliedFilters[0]["values"];
 
-  //   if (appliedFilters.length > 1) {
-  //     newState.filteredProducts = filterWithManyFilters(appliedFilters);
-  //   } else newState.filteredProducts = filteredValues;
+  let index = 0;
+  finalFilteredValues = appliedFilters[appliedFilters.length - 1]["values"];
+  while (index < appliedFilters.length - 1) {
+    let values = appliedFilters[index]["values"];
 
-  //   if (!newState.filteredProducts) return newState;
-
-  //   newState.filteredCount = newState.filteredProducts.length;
-  //   newState.filteredPages = Math.ceil(
-  //     newState.filteredCount / newState.countPerPage
-  //   );
-  // } else {
-  //   appliedFilters = removeFilter(type, appliedFilters);
-
-  //   if (appliedFilters.length === 0) {
-  //     newState.filteredProducts = newState.products;
-  //   } else {
-  //     newState.filteredProducts = filterWithManyFilters(appliedFilters);
-  //   }
-  //   newState.filteredCount = newState.filteredProducts.length;
-  //   newState.filteredPages = Math.ceil(
-  //     newState.filteredCount / newState.countPerPage
-  //   );
-  // }
-  // newState.valuesPerPage = newState.filteredProducts.slice(
-  //   0,
-  //   newState.countPerPage
-  // );
-  // return newState;
+    finalFilteredValues = finalFilteredValues.filter(function (o1) {
+      return values.some(function (o2) {
+        return o1["id"] === o2["id"];
+      });
+    });
+    index = index + 1;
+  }
 }
 
 function addFilterIfNotExists(filter, appliedFilters, index) {
