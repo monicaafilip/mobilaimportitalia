@@ -14,14 +14,48 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         return product.filter.toLowerCase().includes(category);
       });
 
-      console.log(filteredValues);
-      return updateState(
-        state,
-        newState,
-        filteredValues,
-        category,
-        DirectoryTypes.FILTER_BY_CATEGORY
-      );
+      let appliedFilters = state.appliedFilters;
+      if (category) {
+        let result = addFilterIfNotExists(
+          DirectoryTypes.FILTER_BY_CATEGORY,
+          appliedFilters
+        );
+        appliedFilters = result.appliedFilters;
+
+        console.log(appliedFilters);
+        if (!appliedFilters) return newState;
+
+        if (result.index === -1)
+          appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+        else appliedFilters[result.index]["values"] = filteredValues;
+
+        console.log(filteredValues);
+
+        newState.appliedFilters = appliedFilters;
+        newState.filteredProducts = filteredValues;
+        newState.valuesPerPage = newState.filteredProducts.slice(
+          0,
+          newState.countPerPage
+        );
+        newState.filteredCount = newState.filteredProducts.length;
+        newState.filteredPages = Math.ceil(
+          newState.filteredCount / newState.countPerPage
+        );
+      } else {
+        appliedFilters = removeFilter(
+          DirectoryTypes.FILTER_BY_CATEGORY,
+          appliedFilters
+        );
+
+        if (appliedFilters.length === 0) {
+          newState.filteredProducts = newState.products;
+          newState.filteredCount = newState.filteredProducts.length;
+          newState.filteredPages = Math.ceil(
+            newState.filteredCount / newState.countPerPage
+          );
+        }
+      }
+      return newState;
     }
     case DirectoryTypes.LOAD_DATA: {
       let products = data;
