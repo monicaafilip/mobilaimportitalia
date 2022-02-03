@@ -116,7 +116,16 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
   let appliedFilters = state.appliedFilters;
 
   if (payloadValue) {
-    appliedFilters = addFilterIfNotExists(type, appliedFilters);
+    let result = addFilterIfNotExists(type, appliedFilters);
+    appliedFilters = result.appliedFilters;
+
+    if (!appliedFilters) return newState;
+
+    if (result.index === -1)
+      appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+    else appliedFilters[result.index]["values"] = filteredValues;
+
+    // appliedFilters = addFilterIfNotExists(type, appliedFilters);
 
     newState.filteredProducts = filteredValues;
     newState.valuesPerPage = newState.filteredProducts.slice(
@@ -182,12 +191,20 @@ function updateState(state, newState, filteredValues, payloadValue, type) {
 }
 
 function addFilterIfNotExists(filter, appliedFilters) {
+  let index = -1;
   if (appliedFilters) {
-    let index = appliedFilters.indexOf(filter);
-    if (index === -1) appliedFilters.push(filter);
+    for (let i = 0; i < appliedFilters.length; i++)
+      if (appliedFilters[i]["filter"] === filter) {
+        index = i;
+        break;
+      }
+    if (index === -1) {
+      const obj = { filter: filter, values: [] };
+      appliedFilters.push(obj);
+    }
   }
 
-  return appliedFilters;
+  return { appliedFilters, index };
 }
 
 function removeFilter(filter, appliedFilters) {
