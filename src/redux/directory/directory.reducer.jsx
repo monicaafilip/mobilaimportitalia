@@ -14,38 +14,13 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
         return product.filter.toLowerCase().includes(category);
       });
 
-      let appliedFilters = state.appliedFilters;
-
-      if (category) {
-        appliedFilters = addFilterIfNotExists(
-          DirectoryTypes.FILTER_BY_CATEGORY,
-          appliedFilters
-        );
-
-        newState.filteredProducts = filteredValues;
-        newState.valuesPerPage = newState.filteredProducts.slice(
-          0,
-          newState.countPerPage
-        );
-        newState.filteredCount = newState.filteredProducts.length;
-        newState.filteredPages = Math.ceil(
-          newState.filteredCount / newState.countPerPage
-        );
-      } else {
-        appliedFilters = removeFilter(
-          DirectoryTypes.FILTER_BY_CATEGORY,
-          appliedFilters
-        );
-
-        if (appliedFilters.length === 0) {
-          newState.filteredProducts = newState.products;
-          newState.filteredCount = newState.filteredProducts.length;
-          newState.filteredPages = Math.ceil(
-            newState.filteredCount / newState.countPerPage
-          );
-        }
-      }
-      return newState;
+      return updateState(
+        state,
+        newState,
+        filteredValues,
+        category,
+        DirectoryTypes.FILTER_BY_CATEGORY
+      );
     }
     case DirectoryTypes.LOAD_DATA: {
       let products = data;
@@ -136,6 +111,75 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 };
 
 export default directoryReducer;
+
+function updateState(state, newState, filteredValues, payloadValue, type) {
+  let appliedFilters = state.appliedFilters;
+
+  if (payloadValue) {
+    appliedFilters = addFilterIfNotExists(type, appliedFilters);
+
+    newState.filteredProducts = filteredValues;
+    newState.valuesPerPage = newState.filteredProducts.slice(
+      0,
+      newState.countPerPage
+    );
+    newState.filteredCount = newState.filteredProducts.length;
+    newState.filteredPages = Math.ceil(
+      newState.filteredCount / newState.countPerPage
+    );
+  } else {
+    appliedFilters = removeFilter(type, appliedFilters);
+
+    if (appliedFilters.length === 0) {
+      newState.filteredProducts = newState.products;
+      newState.filteredCount = newState.filteredProducts.length;
+      newState.filteredPages = Math.ceil(
+        newState.filteredCount / newState.countPerPage
+      );
+    }
+  }
+  return newState;
+  // let appliedFilters = state.appliedFilters;
+  // let result = undefined;
+  // if (payloadValue) {
+  //   result = addFilterIfNotExists(type, appliedFilters);
+  //   appliedFilters = result.appliedFilters;
+
+  //   if (!appliedFilters) return newState;
+
+  //   if (result.index === -1)
+  //     appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+  //   else appliedFilters[result.index]["values"] = filteredValues;
+
+  //   if (appliedFilters.length > 1) {
+  //     newState.filteredProducts = filterWithManyFilters(appliedFilters);
+  //   } else newState.filteredProducts = filteredValues;
+
+  //   if (!newState.filteredProducts) return newState;
+
+  //   newState.filteredCount = newState.filteredProducts.length;
+  //   newState.filteredPages = Math.ceil(
+  //     newState.filteredCount / newState.countPerPage
+  //   );
+  // } else {
+  //   appliedFilters = removeFilter(type, appliedFilters);
+
+  //   if (appliedFilters.length === 0) {
+  //     newState.filteredProducts = newState.products;
+  //   } else {
+  //     newState.filteredProducts = filterWithManyFilters(appliedFilters);
+  //   }
+  //   newState.filteredCount = newState.filteredProducts.length;
+  //   newState.filteredPages = Math.ceil(
+  //     newState.filteredCount / newState.countPerPage
+  //   );
+  // }
+  // newState.valuesPerPage = newState.filteredProducts.slice(
+  //   0,
+  //   newState.countPerPage
+  // );
+  // return newState;
+}
 
 function addFilterIfNotExists(filter, appliedFilters) {
   if (appliedFilters) {
