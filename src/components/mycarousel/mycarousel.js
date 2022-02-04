@@ -24,31 +24,31 @@ function MyCarousel(st) {
       <Carousel.Item interval={2000}>
         <img className="d-block w-100" src={firstImg} alt="First slide" />
         <Carousel.Caption>
-          <h1 className="display-4 h1VWSize">Modern Design</h1>
-          <p className=" normalVWSize">
-            Mobilă nouă și second-hand import Italia
-          </p>
+          <h1 className="carousel-title h1VWSize">Modern Design</h1>
+          <p className="normalSize">Mobilă nouă și second-hand import Italia</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={2000}>
         <img className="d-block w-100" src={secondImg} alt="Second slide" />
         <Carousel.Caption>
-          <h1 className="display-4 h1VWSize">Modern Design</h1>
+          <h1 className=" carousel-title">Modern Design</h1>
           <button
-            className="btn btn-success my-2 my-sm-0  productsBtn normalVWSize"
+            className="btn btn-success my-2 my-sm-0  productsBtn"
             onClick={routeChange}
           >
             Produse
           </button>
         </Carousel.Caption>
       </Carousel.Item>
-      {salesProducts.map((product) => (
+      {salesProducts?.map((product) => (
         <Carousel.Item interval={2000}>
           <img className="d-block w-100" src={product.imageUrl} alt="slide" />
           <Carousel.Caption>
-            {" "}
-            <h1 className="display-4 h1VWSize">Mobilă la reducere!</h1>
-            <a className="phone-number" href="tel:+40746 086 433">
+            <div className="ivory carousel-title">
+              {product.title}: <b className="red">{product.sales}</b> lei!
+            </div>
+            <p className="normalSize">Pret initial: {product.price} lei</p>
+            <a className="phone-number normalSize" href="tel:+40746 086 433">
               Rezervă în magazin!
             </a>
           </Carousel.Caption>

@@ -10,6 +10,24 @@
 .productsBtn {
   margin: auto;
 }
+
+.red {
+  color: red;
+}
+
+.ivory {
+  color: #fffff0;
+}
+
+.carousel-title {
+  font-size: 5vw;
+  text-shadow: 0 0 3px #fffff0, 0 0 5px black;
+}
+.normalSize {
+  font-size: 2.5vw;
+  text-shadow: 0 0 3px #fffff0, 0 0 5px black;
+}
+
 @media (max-width: 576px) {
   .h1VWSize {
     font-size: 5vw;
