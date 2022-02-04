@@ -7,40 +7,119 @@ const INITIAL_STATE = {
 const directoryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case DirectoryTypes.FILTER_BY_CATEGORY: {
+      console.log(state);
       let newState = Object.assign({}, state);
       let category = action.payload.category;
       let filteredValues = state.products.filter((product) => {
         return product.filter.toLowerCase().includes(category);
       });
 
+      return updateState(
+        state,
+        newState,
+        filteredValues,
+        category,
+        DirectoryTypes.FILTER_BY_CATEGORY
+      );
+    }
+    case DirectoryTypes.FILTER_BY_PRICE: {
+      let newState = Object.assign({}, state);
+      let minValue = parseInt(action.payload.minValue);
+      let maxValue = parseInt(action.payload.maxValue);
+
       let appliedFilters = state.appliedFilters;
 
-      if (category) {
+      let filteredValues = [];
+      let filterFunction = (product) => {
+        if (product.price === product.sales) {
+          return parseInt(product.price) <= maxValue &&
+            parseInt(product.price) >= minValue
+            ? product
+            : null;
+        } else
+          return parseInt(product.sales) <= maxValue &&
+            parseInt(product.sales) >= minValue
+            ? product
+            : null;
+      };
+
+      filteredValues = newState.products.filter(filterFunction);
+      let index = -1;
+      if (minValue !== 0 || maxValue !== 10000) {
         appliedFilters = addFilterIfNotExists(
-          DirectoryTypes.FILTER_BY_CATEGORY,
-          appliedFilters
+          DirectoryTypes.FILTER_BY_PRICE,
+          appliedFilters,
+          index
         );
 
-        newState.filteredProducts = filteredValues;
+        if (!appliedFilters) return newState;
+
+        if (index === -1)
+          appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+        else appliedFilters[index]["values"] = filteredValues;
+
+        if (appliedFilters.length > 1) {
+          newState.filteredProducts = filterWithManyFilters(appliedFilters);
+        } else newState.filteredProducts = filteredValues;
+
+        console.log(newState.filteredProducts);
+        if (!newState.filteredProducts) return newState;
+
         newState.filteredCount = newState.filteredProducts.length;
         newState.filteredPages = Math.ceil(
           newState.filteredCount / newState.countPerPage
         );
-      } else {
+      } else if (minValue === 0 && maxValue === 10000) {
         appliedFilters = removeFilter(
-          DirectoryTypes.FILTER_BY_CATEGORY,
+          DirectoryTypes.FILTER_BY_PRICE,
           appliedFilters
         );
 
         if (appliedFilters.length === 0) {
           newState.filteredProducts = newState.products;
-          newState.filteredCount = newState.filteredProducts.length;
-          newState.filteredPages = Math.ceil(
-            newState.filteredCount / newState.countPerPage
-          );
+        } else {
+          newState.filteredProducts = filterWithManyFilters(appliedFilters);
         }
+        newState.filteredCount = newState.filteredProducts.length;
+        newState.filteredPages = Math.ceil(
+          newState.filteredCount / newState.countPerPage
+        );
       }
+      newState.valuesPerPage = newState.filteredProducts.slice(
+        0,
+        newState.countPerPage
+      );
       return newState;
+    }
+    case DirectoryTypes.FILTER_BY_LOCATION: {
+      let newState = Object.assign({}, state);
+      let location = action.payload.location;
+      let filteredValues = state.products.filter((product) => {
+        return product.location.toLowerCase().includes(location);
+      });
+
+      return updateState(
+        state,
+        newState,
+        filteredValues,
+        location,
+        DirectoryTypes.FILTER_BY_LOCATION
+      );
+    }
+    case DirectoryTypes.FILTER_SALES: {
+      let newState = Object.assign({}, state);
+      let sales = action.payload.sales;
+      let filteredValues = state.products.filter((product) => {
+        return product.filter.toLowerCase().includes("reduceri");
+      });
+
+      return updateState(
+        state,
+        newState,
+        filteredValues,
+        sales,
+        DirectoryTypes.FILTER_SALES
+      );
     }
     case DirectoryTypes.LOAD_DATA: {
       let products = data;
@@ -53,7 +132,8 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         products,
-        filteredProducts: products.slice(0, countPerPage),
+        filteredProducts: products,
+        valuesPerPage: products.slice(0, countPerPage),
         currentCount: countPerPage,
         countPerPage,
         totalCount: count,
@@ -68,11 +148,11 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
       let upperCountExact = exactPageState.countPerPage * exactPage;
       let lowerCountExact = upperCountExact - exactPageState.countPerPage;
 
-      let exactProducts = exactPageState.products.slice(
+      let exactProducts = exactPageState.filteredProducts.slice(
         lowerCountExact,
         upperCountExact
       );
-      exactPageState.filteredProducts = exactProducts;
+      exactPageState.valuesPerPage = exactProducts;
       exactPageState.currentCount = upperCountExact;
       exactPageState.currentPage = exactPage;
       window.history.pushState(
@@ -93,36 +173,30 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 
       let perPage = loadNewPageState.countPerPage;
 
-      if (
-        action.payload.filteredProducts &&
-        action.payload.filteredProducts.length < perPage
-      )
-        perPage = action.payload.filteredProducts.length;
-
       let nextProducts;
       if (addPages === 1) {
-        //Moving from page 1 to 2 will cause ‘upperCount’ to be 40
         let upperCount = loadNewPageState.currentCount + perPage;
-        let lowerCount = loadNewPageState.currentCount; //This hasn’t been changed. It will remain 20.
+        let lowerCount = loadNewPageState.currentCount;
 
         loadNewPageState.currentCount += loadNewPageState.countPerPage;
-        nextProducts = loadNewPageState.products.slice(lowerCount, upperCount);
+        nextProducts = loadNewPageState.filteredProducts.slice(
+          lowerCount,
+          upperCount
+        );
       }
 
       if (addPages === -1) {
-        let upperCount = loadNewPageState.currentCount; //40
-        let lowerCount = loadNewPageState.currentCount - perPage; //20
+        let upperCount = loadNewPageState.currentCount;
+        let lowerCount = loadNewPageState.currentCount - perPage;
 
         loadNewPageState.currentCount -= loadNewPageState.countPerPage;
-        nextProducts = loadNewPageState.products.slice(
+        nextProducts = loadNewPageState.filteredProducts.slice(
           lowerCount - perPage,
           upperCount - perPage
         );
       }
 
-      loadNewPageState.filteredProducts = nextProducts;
-      // Don't use window.history.pushState() here in production
-      // It's better to keep redirections predictable
+      loadNewPageState.valuesPerPage = nextProducts;
       window.history.pushState(
         { page: 1 },
         "title 1",
@@ -137,18 +211,98 @@ const directoryReducer = (state = INITIAL_STATE, action) => {
 
 export default directoryReducer;
 
-function addFilterIfNotExists(filter, appliedFilters) {
-  if (appliedFilters) {
-    let index = appliedFilters.indexOf(filter);
-    if (index === -1) appliedFilters.push(filter);
-  }
+function updateState(state, newState, filteredValues, payloadValue, type) {
+  let appliedFilters = state.appliedFilters;
 
+  console.log(appliedFilters);
+  if (payloadValue) {
+    let index = -1;
+    appliedFilters = addFilterIfNotExists(type, appliedFilters, index);
+
+    console.log(appliedFilters);
+    if (!appliedFilters) return newState;
+
+    if (index === -1)
+      appliedFilters[appliedFilters.length - 1]["values"] = filteredValues;
+    else appliedFilters[index]["values"] = filteredValues;
+
+    newState.appliedFilters = appliedFilters;
+
+    if (appliedFilters.length > 1) {
+      newState.filteredProducts = filterWithManyFilters(appliedFilters);
+    } else newState.filteredProducts = filteredValues;
+
+    if (!newState.filteredProducts) return newState;
+
+    newState.filteredCount = newState.filteredProducts.length;
+    newState.filteredPages = Math.ceil(
+      newState.filteredCount / newState.countPerPage
+    );
+  } else {
+    appliedFilters = removeFilter(type, appliedFilters);
+
+    if (appliedFilters.length === 0) {
+      newState.filteredProducts = newState.products;
+    } else {
+      newState.filteredProducts = filterWithManyFilters(appliedFilters);
+    }
+    newState.filteredCount = newState.filteredProducts.length;
+    newState.filteredPages = Math.ceil(
+      newState.filteredCount / newState.countPerPage
+    );
+  }
+  newState.valuesPerPage = newState.filteredProducts.slice(
+    0,
+    newState.countPerPage
+  );
+  return newState;
+}
+
+function filterWithManyFilters(appliedFilters) {
+  if (!appliedFilters) return [];
+
+  if (appliedFilters.length === 1) return appliedFilters[0]["values"];
+
+  let index = 0;
+  let finalFilteredValues = appliedFilters[appliedFilters.length - 1]["values"];
+  console.log(finalFilteredValues);
+  while (index < appliedFilters.length - 1) {
+    let values = appliedFilters[index]["values"];
+
+    finalFilteredValues = finalFilteredValues.filter(function (o1) {
+      return values.some(function (o2) {
+        return o1["id"] === o2["id"];
+      });
+    });
+    console.log(finalFilteredValues);
+    index = index + 1;
+  }
+  return finalFilteredValues;
+}
+
+function addFilterIfNotExists(filter, appliedFilters, index) {
+  if (appliedFilters) {
+    for (let i = 0; i < appliedFilters.length; i++)
+      if (appliedFilters[i]["filter"] === filter) {
+        index = i;
+        break;
+      }
+    if (index === -1) {
+      const obj = { filter: filter, values: [] };
+      appliedFilters.push(obj);
+    }
+  }
   return appliedFilters;
 }
 
 function removeFilter(filter, appliedFilters) {
   if (appliedFilters) {
-    let index = appliedFilters.indexOf(filter);
+    let index = -1;
+    for (let i = 0; i < appliedFilters.length; i++)
+      if (appliedFilters[i]["filter"] === filter) {
+        index = i;
+        break;
+      }
     appliedFilters.splice(index, 1);
   }
   return appliedFilters;

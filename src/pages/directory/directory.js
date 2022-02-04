@@ -2,10 +2,6 @@ import React from "react";
 import ReactGA from "react-ga";
 import { connect } from "react-redux";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
-
-import "./directory.css";
-import "../../App.css";
 
 import MyNavbar from "../../components/mynavbar/mynavbar";
 import Product from "../../components/product/product";
@@ -16,7 +12,16 @@ import {
   loadNewPage,
   loadExactPage,
   filterByCategory,
+  filterByPrice,
+  filterByLocation,
+  filterSales,
 } from "../../redux/directory/directory.actions";
+
+import Filters from "./filters/filters";
+import Pagination from "../../components/pagination/pagination.component";
+
+import "./directory.scss";
+import "../../App.css";
 
 let perPage = 10;
 
@@ -25,174 +30,123 @@ class Directory extends React.Component {
     super(props);
     const pathname = props.match.path;
 
+    this.state = {
+      minPrice: 0,
+      maxPrice: 10000,
+    };
     let pageView;
     if (pathname === "*") pageView = "/not-found";
     else pageView = pathname;
 
     ReactGA.pageview(pageView);
+
+    this.goToPage = this.goToPage.bind(this);
+    this.previousPage = this.previousPage.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.filter = this.filter.bind(this);
+    this.filterPrice = this.filterPrice.bind(this);
+    this.filterLocation = this.filterLocation.bind(this);
+    this.filterSale = this.filterSale.bind(this);
+    this.renderAll = this.renderAll.bind(this);
   }
   componentDidMount() {
     this.props.dispatch(loadData({ countPerPage: perPage }));
-  }
 
+    const minPrice = localStorage.getItem("minPrice");
+    const maxPrice = localStorage.getItem("maxPrice");
+
+    this.setState({ minPrice: minPrice });
+    this.setState({ maxPrice: maxPrice });
+  }
+  componentDidUpdate() {
+    localStorage.setItem("minPrice", "" + this.state.minPrice);
+    localStorage.setItem("maxPrice", "" + this.state.maxPrice);
+  }
   renderAll() {
-    this.props.dispatch(loadData({ countPerPage: perPage }));
+    this.props.dispatch(filterByCategory({ category: null }));
   }
   filter(cat) {
     this.props.dispatch(filterByCategory({ category: cat }));
   }
+  filterPrice(min, max) {
+    if (min === 0 && max === 10000) {
+      if (min !== this.state.minPrice && max !== this.state.maxPrice)
+        this.props.dispatch(
+          filterByPrice({
+            minValue: undefined,
+            maxValue: undefined,
+          })
+        );
+    }
+    if (min !== this.state.minPrice || max !== this.state.maxPrice) {
+      this.setState(() => ({
+        minPrice: min,
+        maxPrice: max,
+      }));
+      this.props.dispatch(
+        filterByPrice({
+          minValue: min,
+          maxValue: max,
+        })
+      );
+    }
+  }
+  filterLocation(loc) {
+    this.props.dispatch(filterByLocation({ location: loc }));
+  }
+
+  filterSale(sale) {
+    this.props.dispatch(filterSales({ sales: sale }));
+  }
+
   nextPage() {
     this.props.dispatch(loadNewPage({ page: 1 }));
   }
-
   previousPage() {
     this.props.dispatch(loadNewPage({ page: -1 }));
   }
-
   goToPage(page) {
     this.props.dispatch(loadExactPage({ page }));
   }
 
   render() {
-    let products = this.props.state.prods.filteredProducts;
+    let products = this.props.state.prods.valuesPerPage;
+    let currentPage = this.props.state.prods.currentPage;
+    let filteredPages = this.props.state.prods.filteredPages;
+
     return (
       <div className="App">
         <div className="container-fluid mainHomePage">
           <MyNavbar />
-          <div className="categorii">
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.renderAll()}
+          <div className="content">
+            <Filters
+              className="filters"
+              filter={this.filter}
+              renderAll={this.renderAll}
+              filterByPrice={this.filterPrice}
+              filterLocation={this.filterLocation}
+              filterSale={this.filterSale}
+            />
+
+            <ResponsiveMasonry
+              className="products"
+              columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
             >
-              Toate
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("bucatarie")}
-            >
-              Bucătărie
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("baie")}
-            >
-              Baie
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("canapea")}
-            >
-              Canapele
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("dulap")}
-            >
-              Dulapuri
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("pat")}
-            >
-              Paturi
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("masa")}
-            >
-              Mese
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("scaun")}
-            >
-              Scaune
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("frigider")}
-            >
-              Frigidere
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("saltea")}
-            >
-              Saltele
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("fotoliu")}
-            >
-              Fotolii
-            </Button>{" "}
-            <Button
-              className="categorie mt-1 mb-1"
-              variant="outline-dark"
-              onClick={() => this.filter("reduceri")}
-            >
-              Reduceri
-            </Button>{" "}
+              <Masonry>
+                {products?.map(({ id, ...otherProps }) => (
+                  <Product key={id} {...otherProps} />
+                ))}
+              </Masonry>
+            </ResponsiveMasonry>
           </div>
-          <ResponsiveMasonry
-            columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-          >
-            <Masonry>
-              {products?.map(({ id, ...otherProps }) => (
-                <Product key={id} {...otherProps} />
-              ))}
-            </Masonry>
-          </ResponsiveMasonry>
-          {products.length > 9 ? (
-            <div className="previous-next-buttons">
-              <Button
-                variant="outline-dark"
-                onClick={() => this.previousPage()}
-              >
-                Previous page
-              </Button>
-              {"  "}
-              <Button variant="outline-dark" onClick={() => this.nextPage()}>
-                Next page
-              </Button>
-            </div>
-          ) : null}
-          <ul className="pagination-list">
-            <ButtonToolbar
-              key="toolbar"
-              aria-label="Toolbar with button groups"
-            >
-              <ButtonGroup
-                key="group"
-                className="me-2"
-                aria-label="First group"
-              >
-                {[...Array(this.props.state.prods.filteredPages)].map(
-                  (value, index) => (
-                    <Button
-                      key={index}
-                      aria-label="Page 1"
-                      onClick={() => this.goToPage(index + 1)}
-                      aria-current="page"
-                    >
-                      {index + 1}
-                    </Button>
-                  )
-                )}
-              </ButtonGroup>
-            </ButtonToolbar>
-          </ul>
+          <Pagination
+            currentPage={currentPage}
+            lastPage={filteredPages}
+            totalPageCount={this.props.state.prods.filteredPages}
+            goToPage={this.goToPage}
+            previousPage={this.previousPage}
+            nextPage={this.nextPage}
+          />
           <Footer />
         </div>
       </div>

@@ -74,7 +74,7 @@ const Product = ({ title, imageUrl, price, sales, size, material, other }) => {
     <div>
       <div className="card">
         <div className="outer-modal" onClick={() => setModalShow(true)}>
-          <img className="card-img-top" src={imageUrl} alt="produs" />
+          <img className="card-img-top" src={imageUrl[0]} alt="produs" />
           <div className="bottomright">
             Apăsați pe imagine pentru mai multe detalii!
           </div>
@@ -83,7 +83,7 @@ const Product = ({ title, imageUrl, price, sales, size, material, other }) => {
           show={modalShow}
           onHide={() => setModalShow(false)}
           title={title}
-          url={imageUrl}
+          url={imageUrl[0]}
           price={price}
           sales={sales}
           size={size}
