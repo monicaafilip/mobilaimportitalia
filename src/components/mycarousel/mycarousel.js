@@ -15,9 +15,13 @@ function MyCarousel(st) {
     let path = "/produse";
     history.push(path);
   };
-  const salesProducts = st.state.prods.products.filter((product) =>
-    product.filter.includes("reduceri")
-  );
+
+  const products = st.state.prods.products;
+  let salesProducts = undefined;
+  if (products)
+    salesProducts = products.filter((product) =>
+      product.filter.includes("reduceri")
+    );
 
   return (
     <Carousel>
